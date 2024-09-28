@@ -15,154 +15,161 @@ QUOTE \"
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#include<math.h>
+
+#define TABLE_MAX_SIZE 100
 
 struct node {
-  char* key;
-  char* value;
+  char* lex;
+  char* token;
   int line;
-  struct node* next;
-}
- 
-void setNode(struct node* node, char* key, char* value, int line)
-{
-  node->key = (char*)malloc(strlen(key) + 1);
-  node->value = (char*)malloc(strlen(value) + 1);
-  strcpy(node->key, key);
-  strcpy(node->value, value);
-  node->line = line;
-  node->next = NULL;
-};
- 
+  struct node* next_node;
+} typedef node;
+
 struct hash_table {
-  int numOfElements, capacity; 
-  struct node** arr;
-};
+  int max_size; 
+  node** buckets;
+} typedef hash_table;
  
-void initialize_hash_table(struct hash_table* ht)
+void init_hash_table(hash_table* ht)
 {
-  ht->capacity = 100;
-  ht->numOfElements = 0;
-  ht->arr = (struct node**)malloc(sizeof(struct node*) * ht->capacity);
+  ht->max_size = TABLE_MAX_SIZE;
+  ht->buckets = (node**)malloc(sizeof(node*) * ht->max_size);
   return;
 }
- 
-int hashFunction(struct hash_table* ht, char* key)
+
+void fill_node(node* node, char* lex, char* token, int line)
 {
-  int bucketIndex;
+  node->lex = (char*)malloc(strlen(lex) + 1);
+  node->token = (char*)malloc(strlen(token) + 1);
+  strcpy(node->token, token);
+  strcpy(node->lex, lex);
+  node->line = line;
+  node->next_node = NULL;
+};
+ 
+int hash_function(hash_table* ht, char* lex)
+{
+  int bucket_index;
   int sum = 0, factor = 31;
   
-  for (int i = 0; i < strlen(key); i++) {
-    sum = ((sum % ht->capacity) + (((int)key[i]) * factor) % ht->capacity) % ht->capacity;
+  for (int i = 0; i < strlen(lex); i++) {
+    sum = ((sum % ht->max_size) + (((int)lex[i]) * factor) % ht->max_size) % ht->max_size;
     factor = ((factor % __INT16_MAX__) * (31 % __INT16_MAX__)) % __INT16_MAX__;
   }
 
-  bucketIndex = sum;
-  return bucketIndex;
+  bucket_index = sum;
+  return bucket_index;
 }
 
-char* search(struct hash_table* ht, char* key)
+void insert(hash_table* ht, char* lex, char* token, int line)
 {
-  int bucketIndex = hashFunction(ht, key);
+  node* new_node = (node*)malloc(sizeof(node));
+  fill_node(new_node, lex, token, line);
+
+  int bucket_index = hash_function(ht, lex);
   
-  struct node* bucketHead = ht->arr[bucketIndex];
-  while (bucketHead != NULL) {
-    if (strcmp(bucketHead->key, key) == 0) {
-      return bucketHead->value;
-    }
-
-    bucketHead = bucketHead->next;
-  }
-  return "Oops! No data found.\n";
-}
- 
-void insert(struct hash_table* ht, char* key, char* value, int line)
-{
-  int bucketIndex = hashFunction(ht, key);
-  struct node* newNode = (struct node*)malloc(sizeof(struct node));
-  setNode(newNode, key, value, line);
-
-  if (ht->arr[bucketIndex] == NULL) {
-    ht->arr[bucketIndex] = newNode;
-  }
-
-  else {
-    newNode->next = ht->arr[bucketIndex];
-    ht->arr[bucketIndex] = newNode;
-  }
+  new_node->next_node = ht->buckets[bucket_index];
+  ht->buckets[bucket_index] = new_node;
 
   return;
 }
- 
-void delete (struct hash_table* ht, char* key)
+
+char* search(hash_table* ht, char* lex)
 {
-  int bucketIndex = hashFunction(ht, key);
+  int bucket_index = hash_function(ht, lex);
+  node* current_node = ht->buckets[bucket_index];
 
-  struct node* prevNode = NULL;
+  while (current_node != NULL) {
+    if (strcmp(current_node->lex, lex) == 0) {
+      return current_node->token;
+    }
 
-  struct node* currNode = ht->arr[bucketIndex];
+    current_node = current_node->next_node;
+  }
 
-  while (currNode != NULL) {
-    if (strcmp(key, currNode->key) == 0) {
-      if (currNode == ht->arr[bucketIndex]) {
-          ht->arr[bucketIndex] = currNode->next;
+  return "No token found.\n";
+}
+
+char* search_in_line(hash_table* ht, char* lex, int line)
+{
+  int bucket_index = hash_function(ht, lex);
+  node* current_node = ht->buckets[bucket_index];
+
+  while (current_node != NULL) {
+    if (strcmp(current_node->lex, lex) == 0 && current_node->line == line) {
+      return current_node->token;
+    }
+
+    current_node = current_node->next_node;
+  }
+
+  return "No token found.\n";
+}
+ 
+void delete(hash_table* ht, char* lex)
+{
+  node* previous_node = NULL;
+
+  int bucket_index = hash_function(ht, lex);
+  node* current_node = ht->buckets[bucket_index];
+
+  while (current_node != NULL) {
+    if (strcmp(lex, current_node->lex) == 0) {
+      if (current_node == ht->buckets[bucket_index]) {
+        ht->buckets[bucket_index] = current_node->next_node;
       }
       else {
-          prevNode->next = currNode->next;
+        previous_node->next_node = current_node->next_node;
       }
-      free(currNode);
+      free(current_node);
       break;
     }
-    prevNode = currNode;
-    currNode = currNode->next;
+
+    previous_node = current_node;
+    current_node = current_node->next_node;
   }
 
   return;
 }
 
-void delete_hash_table(struct hash_table* ht)
+void drop_hash_table(hash_table* ht)
 {
-  for (int i = 0; i < ht->capacity; i++) {
-    struct node* current = ht->arr[i];
-    while (current != NULL) {
-      struct node* temp = current;
-      current = current->next;
+  for (int i = 0; i < ht->max_size; i++) {
+    node* current_node = ht->buckets[i];
+
+    while (current_node != NULL) {
+      node* temp = current_node;
+      current_node = current_node->next_node;
       free(temp);
     }
   }
-  free(ht->arr);
-  ht->arr = NULL;
-  ht->numOfElements = 0;
-  ht->capacity = 0;
+
+  free(ht->buckets);
+  ht->buckets = NULL;
+  ht->max_size = 0;
   return;
 }
 
-void ht_dump(struct hash_table* ht)
+void ht_dump(hash_table* ht)
 {
-  printf("---> Hash Table Dump:\n");
-  for (int i = 0; i < ht->capacity; i++) {
-    struct node* current = ht->arr[i];
-    if (current != NULL) {
+  printf("HASH TABLE DUMP:\n");
+  for (int i = 0; i < ht->max_size; i++) {
+    node* current_node = ht->buckets[i];
+
+    if (current_node != NULL) {
       printf("\nBucket %d:\n", i);
     }
-    while (current != NULL) {
-      printf("Key: %s, Value: %s, Line: %d\n", current->key, current->value, current->line);
-      current = current->next;
+
+    while (current_node != NULL) {
+      printf("lex: %s, token: %s, line: %d\n", current_node->lex, current_node->token, current_node->line);
+      current_node = current_node->next_node;
     }
   }
+  
   return;
 }
 
-struct hash_table* ht;
-    
-void remove_first_and_last_char(char* str) {
-  int len = strlen(str);
-  
-  if (len > 1) {
-    memmove(str, str + 1, len - 1);
-    str[len - 2] = '\0';
-  }
-}
+hash_table* ht;
 
 %}
 
@@ -172,33 +179,38 @@ void remove_first_and_last_char(char* str) {
 %%
 
 {KEYWORDS}                                              { insert(ht, yytext, yytext, yylineno); } 
-{QUOTE}({D}|{L}|{S}|{WHITESPACE}|{TAB}|\\n)*{QUOTE}     { insert(ht, "literal", yytext, yylineno); }
-({WHITESPACE}|{TAB}|[\r]|{NEW_LINE})+                   { insert(ht, "vazio", yytext, yylineno);}
-[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?                     { insert(ht, "numero", yytext, yylineno); }
-{L}({L}|{D}|{UNDERSCORE})*                              { insert(ht, "id_ou_funcao", yytext, yylineno); }
-\<|\>|>=|<=|==|<>                                       { insert(ht, "op_relacional", yytext, yylineno); }
-\+|\-|\*|\/                                             { insert(ht, "op_aritmetico", yytext, yylineno); }
-=                                                       { insert(ht, "atribuicao", yytext, yylineno); }
-\(                                                      { insert(ht, "abre_par", yytext, yylineno); }
-\)                                                      { insert(ht, "fecha_par", yytext, yylineno); }
-\{({L}|{D}|{S}|{WHITESPACE}|{TAB})*\}                   { remove_first_and_last_char(yytext); insert(ht, "comentario", yytext, yylineno);}
-,                                                       { insert(ht, "virgula", yytext, yylineno); }
-;                                                       { insert(ht, "ponto_e_virg", yytext, yylineno); }
-@                                                       { insert(ht, "chamada", yytext, yylineno); }
+{QUOTE}({D}|{L}|{S}|{WHITESPACE}|{TAB}|\\n)*{QUOTE}     { insert(ht, yytext, "literal", yylineno); }
+({WHITESPACE}|{TAB}|[\r]|{NEW_LINE})+                   { insert(ht, yytext, "vazio", yylineno);}
+[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?                     { insert(ht, yytext, "numero", yylineno); }
+{L}({L}|{D}|{UNDERSCORE})*                              { insert(ht, yytext, "id_ou_funcao", yylineno); }
+\<|\>|>=|<=|==|<>                                       { insert(ht, yytext, "op_relacional", yylineno); }
+\+|\-|\*|\/                                             { insert(ht, yytext, "op_aritmetico", yylineno); }
+=                                                       { insert(ht, yytext, "atribuicao", yylineno); }
+\(                                                      { insert(ht, yytext, "abre_par", yylineno); }
+\)                                                      { insert(ht, yytext, "fecha_par", yylineno); }
+\{({L}|{D}|{S}|{WHITESPACE}|{TAB})*\}                   { insert(ht, yytext, "comentario", yylineno);}
+,                                                       { insert(ht, yytext, "virgula", yylineno); }
+;                                                       { insert(ht, yytext, "ponto_e_virg", yylineno); }
+@                                                       { insert(ht, yytext, "chamada", yylineno); }
 .                                                       { printf("(%d,ERROR,\"%s\")\n", yylineno, yytext); return 0; }
 
 %%
 
+#define LINE 10
+
 int main() {
 
-  ht = (struct hash_table*)malloc(sizeof(struct hash_table));
-  initialize_hash_table(ht);
+  ht = (hash_table*)malloc(sizeof(hash_table));
+  init_hash_table(ht);
 
   yylex();
 
   ht_dump(ht);
 
-  delete_hash_table(ht);
+  printf("\nNo line search: %s\n", search(ht, "escreva"));
+  printf("Search in line: %s\n", search_in_line(ht, "escreva", 10));
+
+  drop_hash_table(ht);
 
   return 0;
 }

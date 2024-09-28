@@ -555,212 +555,159 @@ char *yytext;
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#include<math.h>
 
-// Linked List node
+#define TABLE_MAX_SIZE 100
+
 struct node {
- 
-    // key is string
-    char* key;
- 
-    // value is also string
-    char* value;
-    int line;
-    struct node* next;
-};
- 
-// like constructor
-void setNode(struct node* node, char* key, char* value, int line)
-{
-    node->key = (char*)malloc(strlen(key) + 1);
-    node->value = (char*)malloc(strlen(value) + 1);
+  char* lex;
+  char* token;
+  int line;
+  struct node* next_node;
+} typedef node;
 
-    strcpy(node->key, key);
-    strcpy(node->value, value);
-
-    node->line = line;
-    node->next = NULL;
-};
- 
 struct hash_table {
+  int max_size; 
+  node** buckets;
+} typedef hash_table;
  
-    // Current number of elements in hash_table
-    // and capacity of hash_table
-    int numOfElements, capacity;
- 
-    // hold base address array of linked list
-    struct node** arr;
+void init_hash_table(hash_table* ht)
+{
+  ht->max_size = TABLE_MAX_SIZE;
+  ht->buckets = (node**)malloc(sizeof(node*) * ht->max_size);
+  return;
+}
+
+void fill_node(node* node, char* lex, char* token, int line)
+{
+  node->lex = (char*)malloc(strlen(lex) + 1);
+  node->token = (char*)malloc(strlen(token) + 1);
+  strcpy(node->token, token);
+  strcpy(node->lex, lex);
+  node->line = line;
+  node->next_node = NULL;
 };
  
-// like constructor
-void initialize_hash_table(struct hash_table* ht)
+int hash_function(hash_table* ht, char* lex)
 {
- 
-    // Default capacity in this case
-    ht->capacity = 100;
-    ht->numOfElements = 0;
- 
-    // array of size = 1
-    ht->arr = (struct node**)malloc(sizeof(struct node*)
-                                    * ht->capacity);
-    return;
-}
- 
-int hashFunction(struct hash_table* ht, char* key)
-{
-    int bucketIndex;
-    int sum = 0, factor = 31;
-    for (int i = 0; i < strlen(key); i++) {
-
-        sum = ((sum % ht->capacity)
-               + (((int)key[i]) * factor) % ht->capacity)
-              % ht->capacity;
- 
-        factor = ((factor % __INT16_MAX__)
-                  * (31 % __INT16_MAX__))
-                 % __INT16_MAX__;
-    }
- 
-    bucketIndex = sum;
-    return bucketIndex;
-}
-
-char* search(struct hash_table* ht, char* key)
-{
-    // Obtém o índice do bucket
-    int bucketIndex = hashFunction(ht, key);
-    
-    // Aponta para o início da lista vinculada no bucket
-    struct node* bucketHead = ht->arr[bucketIndex];
-
-    // Itera pela lista vinculada procurando pela chave
-    while (bucketHead != NULL) {
-        if (strcmp(bucketHead->key, key) == 0) {
-            // Se a chave for encontrada, retorna o valor
-            return bucketHead->value;
-        }
-        bucketHead = bucketHead->next;
-    }
-
-    // Se nenhuma chave for encontrada, retorna uma mensagem de erro
-    return "Oops! No data found.\n";
-}
- 
-void insert(struct hash_table* ht, char* key, char* value, int line)
-{
-    // Getting bucket index for the given
-    // key - value pair
-    int bucketIndex = hashFunction(ht, key);
-    struct node* newNode = (struct node*)malloc(sizeof(struct node));
-    
-    // Setting value of node
-    setNode(newNode, key, value, line);
- 
-    // Bucket index is empty....no collision
-    if (ht->arr[bucketIndex] == NULL) {
-        ht->arr[bucketIndex] = newNode;
-    }
- 
-    // Collision
-    else {
- 
-        // Adding newNode at the head of
-        // linked list which is present
-        // at bucket index....insertion at
-        // head in linked list
-        newNode->next = ht->arr[bucketIndex];
-        ht->arr[bucketIndex] = newNode;
-    }
-
-    return;
-}
- 
-void delete (struct hash_table* ht, char* key)
-{
- 
-    // Getting bucket index for the
-    // given key
-    int bucketIndex = hashFunction(ht, key);
- 
-    struct node* prevNode = NULL;
- 
-    // Points to the head of
-    // linked list present at
-    // bucket index
-    struct node* currNode = ht->arr[bucketIndex];
- 
-    while (currNode != NULL) {
- 
-        // Key is matched at delete this
-        // node from linked list
-        if (strcmp(key, currNode->key) == 0) {
- 
-            // Head node
-            // deletion
-            if (currNode == ht->arr[bucketIndex]) {
-                ht->arr[bucketIndex] = currNode->next;
-            }
- 
-            // Last node or middle node
-            else {
-                prevNode->next = currNode->next;
-            }
-            free(currNode);
-            break;
-        }
-        prevNode = currNode;
-        currNode = currNode->next;
-    }
-    return;
-}
-
-void delete_hash_table(struct hash_table* ht)
-{
-    for (int i = 0; i < ht->capacity; i++) {
-        struct node* current = ht->arr[i];
-        while (current != NULL) {
-            struct node* temp = current;
-            current = current->next;
-            free(temp); // Libera o nó atual
-        }
-    }
-    free(ht->arr); // Libera o array de ponteiros
-    ht->arr = NULL; // Previne dangling pointers
-    ht->numOfElements = 0;
-    ht->capacity = 0;
-    return;
-}
-
-void ht_dump(struct hash_table* ht)
-{
-    printf("---> Hash Table Dump:\n");
-    for (int i = 0; i < ht->capacity; i++) {
-        struct node* current = ht->arr[i];
-        if (current != NULL) {
-            printf("\nBucket %d:\n", i);
-        }
-        while (current != NULL) {
-            printf("Key: %s, Value: %s, Line: %d\n", current->key, current->value, current->line);
-            current = current->next;
-        }
-    }
-    return;
-}
-
-struct hash_table* ht;
-    
-void remove_first_and_last_char(char* str) {
-  int len = strlen(str);
+  int bucket_index;
+  int sum = 0, factor = 31;
   
-  if (len > 1) {
-    memmove(str, str + 1, len - 1);
-    str[len - 2] = '\0';
+  for (int i = 0; i < strlen(lex); i++) {
+    sum = ((sum % ht->max_size) + (((int)lex[i]) * factor) % ht->max_size) % ht->max_size;
+    factor = ((factor % __INT16_MAX__) * (31 % __INT16_MAX__)) % __INT16_MAX__;
   }
+
+  bucket_index = sum;
+  return bucket_index;
 }
 
-#line 761 "lex.yy.c"
+void insert(hash_table* ht, char* lex, char* token, int line)
+{
+  node* new_node = (node*)malloc(sizeof(node));
+  fill_node(new_node, lex, token, line);
 
-#line 763 "lex.yy.c"
+  int bucket_index = hash_function(ht, lex);
+  
+  new_node->next_node = ht->buckets[bucket_index];
+  ht->buckets[bucket_index] = new_node;
+
+  return;
+}
+
+char* search(hash_table* ht, char* lex)
+{
+  int bucket_index = hash_function(ht, lex);
+  
+  node* current_node = ht->buckets[bucket_index];
+  while (current_node != NULL) {
+    if (strcmp(current_node->lex, lex) == 0) {
+      return current_node->token;
+    }
+
+    current_node = current_node->next_node;
+  }
+
+  return "No token found.\n";
+}
+
+char* search_in_line(hash_table* ht, char* lex, int line)
+{
+  int bucket_index = hash_function(ht, lex);
+  
+  node* current_node = ht->buckets[bucket_index];
+  while (current_node != NULL) {
+    if (strcmp(current_node->lex, lex) == 0 && current_node->line == line) {
+      return current_node->token;
+    }
+
+    current_node = current_node->next_node;
+  }
+
+  return "No token found.\n";
+}
+ 
+void delete(hash_table* ht, char* lex)
+{
+  node* previous_node = NULL;
+
+  int bucket_index = hash_function(ht, lex);
+  node* current_node = ht->buckets[bucket_index];
+
+  while (current_node != NULL) {
+    if (strcmp(lex, current_node->lex) == 0) {
+      if (current_node == ht->buckets[bucket_index]) {
+        ht->buckets[bucket_index] = current_node->next_node;
+      }
+      else {
+        previous_node->next_node = current_node->next_node;
+      }
+      free(current_node);
+      break;
+    }
+    previous_node = current_node;
+    current_node = current_node->next_node;
+  }
+
+  return;
+}
+
+void drop_hash_table(hash_table* ht)
+{
+  for (int i = 0; i < ht->max_size; i++) {
+    node* current_node = ht->buckets[i];
+    while (current_node != NULL) {
+      node* temp = current_node;
+      current_node = current_node->next_node;
+      free(temp);
+    }
+  }
+  free(ht->buckets);
+  ht->buckets = NULL;
+  ht->max_size = 0;
+  return;
+}
+
+void ht_dump(hash_table* ht)
+{
+  printf("---> Hash Table Dump:\n");
+  for (int i = 0; i < ht->max_size; i++) {
+    node* current_node = ht->buckets[i];
+    if (current_node != NULL) {
+      printf("\nBucket %d:\n", i);
+    }
+    while (current_node != NULL) {
+      printf("lex: %s, token: %s, line: %d\n", current_node->lex, current_node->token, current_node->line);
+      current_node = current_node->next_node;
+    }
+  }
+  return;
+}
+
+hash_table* ht;
+
+#line 708 "lex.yy.c"
+
+#line 710 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -978,10 +925,10 @@ YY_DECL
 		}
 
 	{
-#line 226 "flex.l"
+#line 173 "flex.l"
 
 
-#line 984 "lex.yy.c"
+#line 931 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1050,86 +997,86 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 228 "flex.l"
+#line 175 "flex.l"
 { insert(ht, yytext, yytext, yylineno); } 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 229 "flex.l"
-{ insert(ht, "literal", yytext, yylineno); }
+#line 176 "flex.l"
+{ insert(ht, yytext, "literal", yylineno); }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 230 "flex.l"
-{ insert(ht, "vazio", yytext, yylineno);}
+#line 177 "flex.l"
+{ insert(ht, yytext, "vazio", yylineno);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 231 "flex.l"
-{ insert(ht, "numero", yytext, yylineno); }
+#line 178 "flex.l"
+{ insert(ht, yytext, "numero", yylineno); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 232 "flex.l"
-{ insert(ht, "id_ou_funcao", yytext, yylineno); }
+#line 179 "flex.l"
+{ insert(ht, yytext, "id_ou_funcao", yylineno); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 233 "flex.l"
-{ insert(ht, "op_relacional", yytext, yylineno); }
+#line 180 "flex.l"
+{ insert(ht, yytext, "op_relacional", yylineno); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 234 "flex.l"
-{ insert(ht, "op_aritmetico", yytext, yylineno); }
+#line 181 "flex.l"
+{ insert(ht, yytext, "op_aritmetico", yylineno); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 235 "flex.l"
-{ insert(ht, "atribuicao", yytext, yylineno); }
+#line 182 "flex.l"
+{ insert(ht, yytext, "atribuicao", yylineno); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 236 "flex.l"
-{ insert(ht, "abre_par", yytext, yylineno); }
+#line 183 "flex.l"
+{ insert(ht, yytext, "abre_par", yylineno); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 237 "flex.l"
-{ insert(ht, "fecha_par", yytext, yylineno); }
+#line 184 "flex.l"
+{ insert(ht, yytext, "fecha_par", yylineno); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 238 "flex.l"
-{ remove_first_and_last_char(yytext); insert(ht, "comentario", yytext, yylineno);}
+#line 185 "flex.l"
+{ insert(ht, yytext, "comentario", yylineno);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 239 "flex.l"
-{ insert(ht, "virgula", yytext, yylineno); }
+#line 186 "flex.l"
+{ insert(ht, yytext, "virgula", yylineno); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 240 "flex.l"
-{ insert(ht, "ponto_e_virg", yytext, yylineno); }
+#line 187 "flex.l"
+{ insert(ht, yytext, "ponto_e_virg", yylineno); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 241 "flex.l"
-{ insert(ht, "chamada", yytext, yylineno); }
+#line 188 "flex.l"
+{ insert(ht, yytext, "chamada", yylineno); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 242 "flex.l"
+#line 189 "flex.l"
 { printf("(%d,ERROR,\"%s\")\n", yylineno, yytext); return 0; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 244 "flex.l"
+#line 191 "flex.l"
 ECHO;
 	YY_BREAK
-#line 1132 "lex.yy.c"
+#line 1079 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 	yyterminate();
@@ -2147,17 +2094,24 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 244 "flex.l"
+#line 191 "flex.l"
 
+
+#define LINE 10
 
 int main() {
 
-  ht = (struct hash_table*)malloc(sizeof(struct hash_table));
-  initialize_hash_table(ht);
+  ht = (hash_table*)malloc(sizeof(hash_table));
+  init_hash_table(ht);
 
   yylex();
 
   ht_dump(ht);
+
+  printf("\nNo line search: %s\n", search(ht, "escreva"));
+  printf("Search in line: %s\n", search_in_line(ht, "escreva", 10));
+
+  drop_hash_table(ht);
 
   return 0;
 }
