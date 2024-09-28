@@ -380,20 +380,21 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[111] =
+static const flex_int16_t yy_accept[112] =
     {   0,
         0,    0,    0,    0,   17,   15,    3,    3,   15,    9,
        10,    7,   12,    4,   13,    6,    8,    6,   14,    5,
         5,    5,    5,    5,    5,    5,    5,    5,   15,   16,
         3,    0,    2,    0,    0,    4,    0,    6,    5,    5,
         5,    5,    5,    5,    5,    5,    5,    5,    5,    1,
-        5,    0,   11,    4,    0,    4,    1,    5,    5,    5,
+        5,    0,   11,    4,    0,    4,    5,    5,    5,    5,
         5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
-        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        1,    5,    5,    5,    5,    5,    5,    5,    5,    5,
         5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
         5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
 
-        5,    5,    5,    5,    5,    5,    5,    5,    5,    0
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -437,41 +438,41 @@ static const YY_CHAR yy_meta[46] =
         4,    4,    4,    2,    2
     } ;
 
-static const flex_int16_t yy_base[115] =
+static const flex_int16_t yy_base[116] =
     {   0,
-        0,    0,    0,    0,  178,  179,   44,   48,   47,  179,
-      179,  179,  179,   41,  179,   39,  158,  157,  179,    0,
-      136,   30,   25,   36,  139,  145,  144,  139,  125,  179,
-       70,   56,  179,  134,  152,   63,   71,  179,    0,  137,
-      127,  139,   29,  137,  136,  128,  126,  119,   40,  124,
-      121,  112,  111,   60,  139,  138,    0,  127,  118,  109,
+        0,    0,    0,    0,  179,  180,   44,   48,   47,  180,
+      180,  180,  180,   41,  180,   39,  159,  158,  180,    0,
+      137,   30,   25,   36,  140,  146,  145,  140,  126,  180,
+       70,   56,  180,  135,  153,   63,   71,  180,    0,  138,
+      128,  140,   29,  138,  137,  129,  127,  120,   40,  125,
+      122,  113,  112,   60,  140,  139,  114,  127,  118,  109,
       124,  110,  122,   64,  120,  118,  112,  108,  117,  106,
-      114,  114,  113,  102,  109,   97,  100,   92,  105,  106,
-       99,   91,   93,   87,   92,   83,   95,   86,   88,   86,
-       82,   85,   91,   77,   91,   76,   73,   86,   67,   76,
+        0,  114,  114,  113,  102,  109,   97,  100,   92,  105,
+      106,   99,   91,   93,   87,   92,   83,   95,   86,   88,
+       86,   82,   85,   91,   77,   91,   76,   73,   86,   67,
 
-       62,   64,   73,   72,   69,   61,   59,   53,   53,  179,
-      104,  107,   81,  110
+       76,   62,   64,   73,   72,   69,   61,   59,   53,   53,
+      180,  104,  107,   81,  110
     } ;
 
-static const flex_int16_t yy_def[115] =
+static const flex_int16_t yy_def[116] =
     {   0,
-      110,    1,  111,  111,  110,  110,  110,  110,  112,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  113,
-      113,  113,  113,  113,  113,  113,  113,  113,  114,  110,
-      110,  112,  110,  110,  110,  110,  110,  110,  113,  113,
-      113,  113,  113,  113,  113,  113,  113,  113,  113,  113,
-      113,  114,  114,  110,  110,  110,  113,  113,  113,  113,
-      113,  113,  113,  113,  113,  113,  113,  113,  113,  113,
-      113,  113,  113,  113,  113,  113,  113,  113,  113,  113,
-      113,  113,  113,  113,  113,  113,  113,  113,  113,  113,
-      113,  113,  113,  113,  113,  113,  113,  113,  113,  113,
+      111,    1,  112,  112,  111,  111,  111,  111,  113,  111,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  114,
+      114,  114,  114,  114,  114,  114,  114,  114,  115,  111,
+      111,  113,  111,  111,  111,  111,  111,  111,  114,  114,
+      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
+      114,  115,  115,  111,  111,  111,  114,  114,  114,  114,
+      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
+      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
+      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
+      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
 
-      113,  113,  113,  113,  113,  113,  113,  113,  113,    0,
-      110,  110,  110,  110
+      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
+        0,  111,  111,  111,  111
     } ;
 
-static const flex_int16_t yy_nxt[225] =
+static const flex_int16_t yy_nxt[226] =
     {   0,
         6,    7,    8,    7,    7,    6,    9,   10,   11,   12,
        12,   13,   12,    6,   12,   14,   15,   16,   17,   18,
@@ -481,26 +482,26 @@ static const flex_int16_t yy_nxt[225] =
        31,   31,   31,   33,   35,   41,   36,   38,   38,   43,
        42,   45,   33,   37,   44,   67,   60,   46,   37,   61,
        34,   31,   31,   31,   31,   54,   35,   47,   36,   34,
-       68,   55,   37,   55,   39,   37,   56,   37,   57,   76,
-       37,   77,   78,  109,   57,  108,   57,  107,  106,   57,
+       68,   55,   37,   55,   39,   37,   56,   37,   71,   77,
+       37,   78,   79,  110,   71,  109,   71,  108,  107,   71,
 
-      105,   57,   57,   79,   30,   30,   30,   30,   32,   32,
-       32,   52,  104,   52,  103,   57,   57,  102,  101,  100,
-       99,   57,   98,   97,   96,   95,   94,   93,   57,   92,
-       91,   90,   57,   89,   88,   87,   86,   57,   85,   57,
-       84,   57,   83,   82,   57,   81,   80,   57,   75,   74,
-       73,   72,   71,   56,   56,   53,   53,   70,   69,   66,
-       65,   64,   63,   62,   59,   58,   57,   54,   32,   53,
-       51,   50,   49,   48,   40,   38,   38,  110,    5,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
+      106,   71,   71,   80,   30,   30,   30,   30,   32,   32,
+       32,   52,  105,   52,  104,   71,   71,  103,  102,  101,
+      100,   71,   99,   98,   97,   96,   95,   94,   71,   93,
+       92,   91,   71,   90,   89,   88,   87,   71,   86,   71,
+       85,   71,   84,   83,   71,   82,   81,   71,   76,   75,
+       74,   73,   72,   71,   56,   56,   53,   53,   70,   69,
+       66,   65,   64,   63,   62,   59,   58,   57,   54,   32,
+       53,   51,   50,   49,   48,   40,   38,   38,  111,    5,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
 
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
-      110,  110,  110,  110
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      111,  111,  111,  111,  111
     } ;
 
-static const flex_int16_t yy_chk[225] =
+static const flex_int16_t yy_chk[226] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -510,23 +511,23 @@ static const flex_int16_t yy_chk[225] =
         8,    8,    8,    9,   14,   22,   14,   16,   16,   23,
        22,   24,   32,   14,   23,   49,   43,   24,   14,   43,
         9,   31,   31,   31,   31,   54,   36,   24,   36,   32,
-       49,   37,   54,   37,  113,   36,   37,   54,  109,   64,
-       36,   64,   64,  108,  107,  106,  105,  104,  103,  102,
+       49,   37,   54,   37,  114,   36,   37,   54,  110,   64,
+       36,   64,   64,  109,  108,  107,  106,  105,  104,  103,
 
-      101,  100,   99,   64,  111,  111,  111,  111,  112,  112,
-      112,  114,   98,  114,   97,   96,   95,   94,   93,   92,
-       91,   90,   89,   88,   87,   86,   85,   84,   83,   82,
-       81,   80,   79,   78,   77,   76,   75,   74,   73,   72,
-       71,   70,   69,   68,   67,   66,   65,   63,   62,   61,
-       60,   59,   58,   56,   55,   53,   52,   51,   50,   48,
-       47,   46,   45,   44,   42,   41,   40,   35,   34,   29,
-       28,   27,   26,   25,   21,   18,   17,    5,  110,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
+      102,  101,  100,   64,  112,  112,  112,  112,  113,  113,
+      113,  115,   99,  115,   98,   97,   96,   95,   94,   93,
+       92,   91,   90,   89,   88,   87,   86,   85,   84,   83,
+       82,   81,   80,   79,   78,   77,   76,   75,   74,   73,
+       72,   70,   69,   68,   67,   66,   65,   63,   62,   61,
+       60,   59,   58,   57,   56,   55,   53,   52,   51,   50,
+       48,   47,   46,   45,   44,   42,   41,   40,   35,   34,
+       29,   28,   27,   26,   25,   21,   18,   17,    5,  111,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
 
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
-      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
-      110,  110,  110,  110
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      111,  111,  111,  111,  111
     } ;
 
 /* Table of booleans, true if rule could match eol. */
@@ -556,144 +557,198 @@ char *yytext;
 #include<stdlib.h>
 #include<math.h>
 
-#define HT_PRIME_1 5
-#define HT_PRIME_2 7
-
-typedef struct
+// Linked List node
+struct node {
+ 
+    // key is string
+    char* key;
+ 
+    // value is also string
+    char* value;
+    int line;
+    struct node* next;
+};
+ 
+// like constructor
+void setNode(struct node* node, char* key, char* value, int line)
 {
-  char *token;
-  char *value;
-  int line;
-} ht_item;
+    node->key = (char*)malloc(strlen(key) + 1);
+    node->value = (char*)malloc(strlen(value) + 1);
 
-typedef struct
-{
-  int size;
-  int count;
-  ht_item **items;
-} ht_hash_table;
+    strcpy(node->key, key);
+    strcpy(node->value, value);
 
-ht_item *ht_new_item(const char *t, const char *v, const int l)
+    node->line = line;
+    node->next = NULL;
+};
+ 
+struct hash_table {
+ 
+    // Current number of elements in hash_table
+    // and capacity of hash_table
+    int numOfElements, capacity;
+ 
+    // hold base address array of linked list
+    struct node** arr;
+};
+ 
+// like constructor
+void initialize_hash_table(struct hash_table* ht)
 {
-  ht_item *i = malloc(sizeof(ht_item));
-  i->token = strdup(t);
-  i->value = strdup(v);
-  i->line = l;
-  return i;
+ 
+    // Default capacity in this case
+    ht->capacity = 100;
+    ht->numOfElements = 0;
+ 
+    // array of size = 1
+    ht->arr = (struct node**)malloc(sizeof(struct node*)
+                                    * ht->capacity);
+    return;
 }
-
-ht_hash_table *ht_new()
+ 
+int hashFunction(struct hash_table* ht, char* key)
 {
-  ht_hash_table *ht = malloc(sizeof(ht_hash_table));
-  ht->size = 53;
-  ht->count = 0;
-  ht->items = calloc((size_t)ht->size, sizeof(ht_item *));
-  return ht;
-}
+    int bucketIndex;
+    int sum = 0, factor = 31;
+    for (int i = 0; i < strlen(key); i++) {
 
-void ht_del_item(ht_item *i)
-{
-  free(i->token);
-  free(i->value);
-  
-  free(i);
-}
-
-void ht_del_hash_table(ht_hash_table *ht)
-{
-  for (int i = 0; i < ht->size; i++)
-  {
-    ht_item *item = ht->items[i];
-    if (item != NULL)
-    {
-      ht_del_item(item);
+        sum = ((sum % ht->capacity)
+               + (((int)key[i]) * factor) % ht->capacity)
+              % ht->capacity;
+ 
+        factor = ((factor % __INT16_MAX__)
+                  * (31 % __INT16_MAX__))
+                 % __INT16_MAX__;
     }
-  }
-  free(ht->items);
-  free(ht);
+ 
+    bucketIndex = sum;
+    return bucketIndex;
 }
 
-int ht_hash(const char* s, const int a, const int m) {
-  long hash = 0;
-  const int len_s = strlen(s);
-  for (int i = 0; i < len_s; i++) {
-      hash += (long)pow(a, len_s - (i+1)) * s[i];
-      hash = hash % m;
-  }
-  return (int)hash;
+char* search(struct hash_table* ht, char* key)
+{
+    // Obtém o índice do bucket
+    int bucketIndex = hashFunction(ht, key);
+    
+    // Aponta para o início da lista vinculada no bucket
+    struct node* bucketHead = ht->arr[bucketIndex];
+
+    // Itera pela lista vinculada procurando pela chave
+    while (bucketHead != NULL) {
+        if (strcmp(bucketHead->key, key) == 0) {
+            // Se a chave for encontrada, retorna o valor
+            return bucketHead->value;
+        }
+        bucketHead = bucketHead->next;
+    }
+
+    // Se nenhuma chave for encontrada, retorna uma mensagem de erro
+    return "Oops! No data found.\n";
+}
+ 
+void insert(struct hash_table* ht, char* key, char* value, int line)
+{
+    // Getting bucket index for the given
+    // key - value pair
+    int bucketIndex = hashFunction(ht, key);
+    struct node* newNode = (struct node*)malloc(sizeof(struct node));
+    
+    // Setting value of node
+    setNode(newNode, key, value, line);
+ 
+    // Bucket index is empty....no collision
+    if (ht->arr[bucketIndex] == NULL) {
+        ht->arr[bucketIndex] = newNode;
+    }
+ 
+    // Collision
+    else {
+ 
+        // Adding newNode at the head of
+        // linked list which is present
+        // at bucket index....insertion at
+        // head in linked list
+        newNode->next = ht->arr[bucketIndex];
+        ht->arr[bucketIndex] = newNode;
+    }
+
+    return;
+}
+ 
+void delete (struct hash_table* ht, char* key)
+{
+ 
+    // Getting bucket index for the
+    // given key
+    int bucketIndex = hashFunction(ht, key);
+ 
+    struct node* prevNode = NULL;
+ 
+    // Points to the head of
+    // linked list present at
+    // bucket index
+    struct node* currNode = ht->arr[bucketIndex];
+ 
+    while (currNode != NULL) {
+ 
+        // Key is matched at delete this
+        // node from linked list
+        if (strcmp(key, currNode->key) == 0) {
+ 
+            // Head node
+            // deletion
+            if (currNode == ht->arr[bucketIndex]) {
+                ht->arr[bucketIndex] = currNode->next;
+            }
+ 
+            // Last node or middle node
+            else {
+                prevNode->next = currNode->next;
+            }
+            free(currNode);
+            break;
+        }
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+    return;
 }
 
-int ht_get_hash(const char* s, const int num_buckets, const int attempt) {
-  const int hash_a = ht_hash(s, HT_PRIME_1, num_buckets);
-  const int hash_b = ht_hash(s, HT_PRIME_2, num_buckets);
-  return (hash_a + (attempt * (hash_b + 1))) % num_buckets;
+void delete_hash_table(struct hash_table* ht)
+{
+    for (int i = 0; i < ht->capacity; i++) {
+        struct node* current = ht->arr[i];
+        while (current != NULL) {
+            struct node* temp = current;
+            current = current->next;
+            free(temp); // Libera o nó atual
+        }
+    }
+    free(ht->arr); // Libera o array de ponteiros
+    ht->arr = NULL; // Previne dangling pointers
+    ht->numOfElements = 0;
+    ht->capacity = 0;
+    return;
 }
 
-void ht_insert(ht_hash_table* ht, const char* token, const char* value, const int line) {
-  ht_item* item = ht_new_item(token, value, line);
-  int index = ht_get_hash(item->token, ht->size, 0);
-  ht_item* cur_item = ht->items[index];
-  int i = 1;
-  while (cur_item != NULL) {
-      index = ht_get_hash(item->token, ht->size, i);
-      cur_item = ht->items[index];
-      i++;
-  } 
-  ht->items[index] = item;
-  ht->count++;
+void ht_dump(struct hash_table* ht)
+{
+    printf("---> Hash Table Dump:\n");
+    for (int i = 0; i < ht->capacity; i++) {
+        struct node* current = ht->arr[i];
+        if (current != NULL) {
+            printf("\nBucket %d:\n", i);
+        }
+        while (current != NULL) {
+            printf("Key: %s, Value: %s, Line: %d\n", current->key, current->value, current->line);
+            current = current->next;
+        }
+    }
+    return;
 }
 
-char* ht_search(ht_hash_table* ht, const char* token) {
-  int index = ht_get_hash(token, ht->size, 0);
-  ht_item* item = ht->items[index];
-  int i = 1;
-  while (item != NULL) {
-      if (strcmp(item->token, token) == 0) {
-          return item->value;
-      }
-      index = ht_get_hash(token, ht->size, i);
-      item = ht->items[index];
-      i++;
-  } 
-  return NULL;
-}
-
-static ht_item HT_DELETED_ITEM = {NULL, NULL};
-
-void ht_delete(ht_hash_table* ht, const char* token) {
-  int index = ht_get_hash(token, ht->size, 0);
-  ht_item* item = ht->items[index];
-  int i = 1;
-  while (item != NULL) {
-      if (item != &HT_DELETED_ITEM) {
-          if (strcmp(item->token, token) == 0) {
-              ht_del_item(item);
-              ht->items[index] = &HT_DELETED_ITEM;
-          }
-      }
-      index = ht_get_hash(token, ht->size, i);
-      item = ht->items[index];
-      i++;
-  } 
-  ht->count--;
-}
-
-void ht_dump(ht_hash_table* ht) {
-  printf("Hash Table Dump:\n");
-  for (int i = 0; i < ht->size; i++) {
-      ht_item* item = ht->items[i];
-      if (item == NULL) {
-          printf("[%d]: NULL\n", i);
-      } else if (item == &HT_DELETED_ITEM) {
-          printf("[%d]: DELETED\n", i);
-      } else {
-          printf("[%d]: Token = %s, Value = %s, Line = %d\n", i, item->token, item->value, item->line);
-      }
-  }
-}
-
-ht_hash_table* ht;
-
+struct hash_table* ht;
+    
 void remove_first_and_last_char(char* str) {
   int len = strlen(str);
   
@@ -703,9 +758,9 @@ void remove_first_and_last_char(char* str) {
   }
 }
 
-#line 706 "lex.yy.c"
+#line 761 "lex.yy.c"
 
-#line 708 "lex.yy.c"
+#line 763 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -923,10 +978,10 @@ YY_DECL
 		}
 
 	{
-#line 172 "flex.l"
+#line 226 "flex.l"
 
 
-#line 929 "lex.yy.c"
+#line 984 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -953,13 +1008,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 111 )
+				if ( yy_current_state >= 112 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 179 );
+		while ( yy_base[yy_current_state] != 180 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -995,86 +1050,86 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 174 "flex.l"
-{ ht_insert(ht, yytext, yytext, yylineno); } 
+#line 228 "flex.l"
+{ insert(ht, yytext, yytext, yylineno); } 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 175 "flex.l"
-{ ht_insert(ht, "literal", yytext, yylineno); }
+#line 229 "flex.l"
+{ insert(ht, "literal", yytext, yylineno); }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 176 "flex.l"
-{ }
+#line 230 "flex.l"
+{ insert(ht, "vazio", yytext, yylineno);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 177 "flex.l"
-{ ht_insert(ht, "numero", yytext, yylineno); }
+#line 231 "flex.l"
+{ insert(ht, "numero", yytext, yylineno); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 178 "flex.l"
-{ ht_insert(ht, "id_ou_funcao", yytext, yylineno); }
+#line 232 "flex.l"
+{ insert(ht, "id_ou_funcao", yytext, yylineno); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 179 "flex.l"
-{ ht_insert(ht, "op_relacional", yytext, yylineno); }
+#line 233 "flex.l"
+{ insert(ht, "op_relacional", yytext, yylineno); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 180 "flex.l"
-{ ht_insert(ht, "op_aritmetico", yytext, yylineno); }
+#line 234 "flex.l"
+{ insert(ht, "op_aritmetico", yytext, yylineno); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 181 "flex.l"
-{ ht_insert(ht, "atribuicao", yytext, yylineno); }
+#line 235 "flex.l"
+{ insert(ht, "atribuicao", yytext, yylineno); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 182 "flex.l"
-{ ht_insert(ht, "abre_par", yytext, yylineno); }
+#line 236 "flex.l"
+{ insert(ht, "abre_par", yytext, yylineno); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 183 "flex.l"
-{ ht_insert(ht, "fecha_par", yytext, yylineno); }
+#line 237 "flex.l"
+{ insert(ht, "fecha_par", yytext, yylineno); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 184 "flex.l"
-{ remove_first_and_last_char(yytext); printf("(%d,comentario,\"%s\")\n", yylineno, yytext);}
+#line 238 "flex.l"
+{ remove_first_and_last_char(yytext); insert(ht, "comentario", yytext, yylineno);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 185 "flex.l"
-{ ht_insert(ht, "virgula", yytext, yylineno); }
+#line 239 "flex.l"
+{ insert(ht, "virgula", yytext, yylineno); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 186 "flex.l"
-{ ht_insert(ht, "ponto_e_virg", yytext, yylineno); }
+#line 240 "flex.l"
+{ insert(ht, "ponto_e_virg", yytext, yylineno); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 187 "flex.l"
-{ ht_insert(ht, "chamada", yytext, yylineno); }
+#line 241 "flex.l"
+{ insert(ht, "chamada", yytext, yylineno); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 188 "flex.l"
+#line 242 "flex.l"
 { printf("(%d,ERROR,\"%s\")\n", yylineno, yytext); return 0; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 190 "flex.l"
+#line 244 "flex.l"
 ECHO;
 	YY_BREAK
-#line 1077 "lex.yy.c"
+#line 1132 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 	yyterminate();
@@ -1372,7 +1427,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 111 )
+			if ( yy_current_state >= 112 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1400,11 +1455,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 111 )
+		if ( yy_current_state >= 112 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 110);
+	yy_is_jam = (yy_current_state == 111);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2092,17 +2147,17 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 190 "flex.l"
+#line 244 "flex.l"
 
 
 int main() {
-  ht = ht_new();
+
+  ht = (struct hash_table*)malloc(sizeof(struct hash_table));
+  initialize_hash_table(ht);
 
   yylex();
 
   ht_dump(ht);
-
-  ht_del_hash_table(ht);
 
   return 0;
 }

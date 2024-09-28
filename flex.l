@@ -2,7 +2,7 @@ D [0-9]
 L [a-zA-Z]
 S [~\`!@#\$%^&*()_\-+\[\]{}|‘?><.\=,]
 
-KEYWORDS funcao|fimfuncao|chama|retorna|tipo|arg|fimargs|escreva|inteiro|real|caractere|se|entao|senao|fimse|enquanto|faca|fimenquanto
+KEYWORDS funcao|fimfuncao|chama|retorna|tipo|args|fimargs|escreva|inteiro|real|caractere|se|entao|senao|fimse|enquanto|faca|fimenquanto
 
 WHITESPACE [ ]
 NEW_LINE [\n]
@@ -17,144 +17,144 @@ QUOTE \"
 #include<stdlib.h>
 #include<math.h>
 
-#define HT_PRIME_1 5
-#define HT_PRIME_2 7
-
-typedef struct
-{
-  char *token;
-  char *value;
+struct node {
+  char* key;
+  char* value;
   int line;
-} ht_item;
-
-typedef struct
-{
-  int size;
-  int count;
-  ht_item **items;
-} ht_hash_table;
-
-ht_item *ht_new_item(const char *t, const char *v, const int l)
-{
-  ht_item *i = malloc(sizeof(ht_item));
-  i->token = strdup(t);
-  i->value = strdup(v);
-  i->line = l;
-  return i;
+  struct node* next;
 }
-
-ht_hash_table *ht_new()
+ 
+void setNode(struct node* node, char* key, char* value, int line)
 {
-  ht_hash_table *ht = malloc(sizeof(ht_hash_table));
-  ht->size = 53;
-  ht->count = 0;
-  ht->items = calloc((size_t)ht->size, sizeof(ht_item *));
-  return ht;
+  node->key = (char*)malloc(strlen(key) + 1);
+  node->value = (char*)malloc(strlen(value) + 1);
+  strcpy(node->key, key);
+  strcpy(node->value, value);
+  node->line = line;
+  node->next = NULL;
+};
+ 
+struct hash_table {
+  int numOfElements, capacity; 
+  struct node** arr;
+};
+ 
+void initialize_hash_table(struct hash_table* ht)
+{
+  ht->capacity = 100;
+  ht->numOfElements = 0;
+  ht->arr = (struct node**)malloc(sizeof(struct node*) * ht->capacity);
+  return;
 }
-
-void ht_del_item(ht_item *i)
+ 
+int hashFunction(struct hash_table* ht, char* key)
 {
-  free(i->token);
-  free(i->value);
+  int bucketIndex;
+  int sum = 0, factor = 31;
   
-  free(i);
+  for (int i = 0; i < strlen(key); i++) {
+    sum = ((sum % ht->capacity) + (((int)key[i]) * factor) % ht->capacity) % ht->capacity;
+    factor = ((factor % __INT16_MAX__) * (31 % __INT16_MAX__)) % __INT16_MAX__;
+  }
+
+  bucketIndex = sum;
+  return bucketIndex;
 }
 
-void ht_del_hash_table(ht_hash_table *ht)
+char* search(struct hash_table* ht, char* key)
 {
-  for (int i = 0; i < ht->size; i++)
-  {
-    ht_item *item = ht->items[i];
-    if (item != NULL)
-    {
-      ht_del_item(item);
+  int bucketIndex = hashFunction(ht, key);
+  
+  struct node* bucketHead = ht->arr[bucketIndex];
+  while (bucketHead != NULL) {
+    if (strcmp(bucketHead->key, key) == 0) {
+      return bucketHead->value;
+    }
+
+    bucketHead = bucketHead->next;
+  }
+  return "Oops! No data found.\n";
+}
+ 
+void insert(struct hash_table* ht, char* key, char* value, int line)
+{
+  int bucketIndex = hashFunction(ht, key);
+  struct node* newNode = (struct node*)malloc(sizeof(struct node));
+  setNode(newNode, key, value, line);
+
+  if (ht->arr[bucketIndex] == NULL) {
+    ht->arr[bucketIndex] = newNode;
+  }
+
+  else {
+    newNode->next = ht->arr[bucketIndex];
+    ht->arr[bucketIndex] = newNode;
+  }
+
+  return;
+}
+ 
+void delete (struct hash_table* ht, char* key)
+{
+  int bucketIndex = hashFunction(ht, key);
+
+  struct node* prevNode = NULL;
+
+  struct node* currNode = ht->arr[bucketIndex];
+
+  while (currNode != NULL) {
+    if (strcmp(key, currNode->key) == 0) {
+      if (currNode == ht->arr[bucketIndex]) {
+          ht->arr[bucketIndex] = currNode->next;
+      }
+      else {
+          prevNode->next = currNode->next;
+      }
+      free(currNode);
+      break;
+    }
+    prevNode = currNode;
+    currNode = currNode->next;
+  }
+
+  return;
+}
+
+void delete_hash_table(struct hash_table* ht)
+{
+  for (int i = 0; i < ht->capacity; i++) {
+    struct node* current = ht->arr[i];
+    while (current != NULL) {
+      struct node* temp = current;
+      current = current->next;
+      free(temp);
     }
   }
-  free(ht->items);
-  free(ht);
+  free(ht->arr);
+  ht->arr = NULL;
+  ht->numOfElements = 0;
+  ht->capacity = 0;
+  return;
 }
 
-int ht_hash(const char* s, const int a, const int m) {
-  long hash = 0;
-  const int len_s = strlen(s);
-  for (int i = 0; i < len_s; i++) {
-      hash += (long)pow(a, len_s - (i+1)) * s[i];
-      hash = hash % m;
+void ht_dump(struct hash_table* ht)
+{
+  printf("---> Hash Table Dump:\n");
+  for (int i = 0; i < ht->capacity; i++) {
+    struct node* current = ht->arr[i];
+    if (current != NULL) {
+      printf("\nBucket %d:\n", i);
+    }
+    while (current != NULL) {
+      printf("Key: %s, Value: %s, Line: %d\n", current->key, current->value, current->line);
+      current = current->next;
+    }
   }
-  return (int)hash;
+  return;
 }
 
-int ht_get_hash(const char* s, const int num_buckets, const int attempt) {
-  const int hash_a = ht_hash(s, HT_PRIME_1, num_buckets);
-  const int hash_b = ht_hash(s, HT_PRIME_2, num_buckets);
-  return (hash_a + (attempt * (hash_b + 1))) % num_buckets;
-}
-
-void ht_insert(ht_hash_table* ht, const char* token, const char* value, const int line) {
-  ht_item* item = ht_new_item(token, value, line);
-  int index = ht_get_hash(item->token, ht->size, 0);
-  ht_item* cur_item = ht->items[index];
-  int i = 1;
-  while (cur_item != NULL) {
-      index = ht_get_hash(item->token, ht->size, i);
-      cur_item = ht->items[index];
-      i++;
-  } 
-  ht->items[index] = item;
-  ht->count++;
-}
-
-char* ht_search(ht_hash_table* ht, const char* token) {
-  int index = ht_get_hash(token, ht->size, 0);
-  ht_item* item = ht->items[index];
-  int i = 1;
-  while (item != NULL) {
-      if (strcmp(item->token, token) == 0) {
-          return item->value;
-      }
-      index = ht_get_hash(token, ht->size, i);
-      item = ht->items[index];
-      i++;
-  } 
-  return NULL;
-}
-
-static ht_item HT_DELETED_ITEM = {NULL, NULL};
-
-void ht_delete(ht_hash_table* ht, const char* token) {
-  int index = ht_get_hash(token, ht->size, 0);
-  ht_item* item = ht->items[index];
-  int i = 1;
-  while (item != NULL) {
-      if (item != &HT_DELETED_ITEM) {
-          if (strcmp(item->token, token) == 0) {
-              ht_del_item(item);
-              ht->items[index] = &HT_DELETED_ITEM;
-          }
-      }
-      index = ht_get_hash(token, ht->size, i);
-      item = ht->items[index];
-      i++;
-  } 
-  ht->count--;
-}
-
-void ht_dump(ht_hash_table* ht) {
-  printf("Hash Table Dump:\n");
-  for (int i = 0; i < ht->size; i++) {
-      ht_item* item = ht->items[i];
-      if (item == NULL) {
-          printf("[%d]: NULL\n", i);
-      } else if (item == &HT_DELETED_ITEM) {
-          printf("[%d]: DELETED\n", i);
-      } else {
-          printf("[%d]: Token = %s, Value = %s, Line = %d\n", i, item->token, item->value, item->line);
-      }
-  }
-}
-
-ht_hash_table* ht;
-
+struct hash_table* ht;
+    
 void remove_first_and_last_char(char* str) {
   int len = strlen(str);
   
@@ -171,32 +171,34 @@ void remove_first_and_last_char(char* str) {
 
 %%
 
-{KEYWORDS}                                              { ht_insert(ht, yytext, yytext, yylineno); } 
-{QUOTE}({D}|{L}|{S}|{WHITESPACE}|{TAB}|\\n)*{QUOTE}     { ht_insert(ht, "literal", yytext, yylineno); }
-({WHITESPACE}|{TAB}|[\r]|{NEW_LINE})+                   { }
-[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?                     { ht_insert(ht, "numero", yytext, yylineno); }
-{L}({L}|{D}|{UNDERSCORE})*                              { ht_insert(ht, "id_ou_funcao", yytext, yylineno); }
-\<|\>|>=|<=|==|<>                                       { ht_insert(ht, "op_relacional", yytext, yylineno); }
-\+|\-|\*|\/                                             { ht_insert(ht, "op_aritmetico", yytext, yylineno); }
-=                                                       { ht_insert(ht, "atribuicao", yytext, yylineno); }
-\(                                                      { ht_insert(ht, "abre_par", yytext, yylineno); }
-\)                                                      { ht_insert(ht, "fecha_par", yytext, yylineno); }
-\{({L}|{D}|{S}|{WHITESPACE}|{TAB})*\}                   { remove_first_and_last_char(yytext); printf("(%d,comentario,\"%s\")\n", yylineno, yytext);}
-,                                                       { ht_insert(ht, "virgula", yytext, yylineno); }
-;                                                       { ht_insert(ht, "ponto_e_virg", yytext, yylineno); }
-@                                                       { ht_insert(ht, "chamada", yytext, yylineno); }
+{KEYWORDS}                                              { insert(ht, yytext, yytext, yylineno); } 
+{QUOTE}({D}|{L}|{S}|{WHITESPACE}|{TAB}|\\n)*{QUOTE}     { insert(ht, "literal", yytext, yylineno); }
+({WHITESPACE}|{TAB}|[\r]|{NEW_LINE})+                   { insert(ht, "vazio", yytext, yylineno);}
+[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?                     { insert(ht, "numero", yytext, yylineno); }
+{L}({L}|{D}|{UNDERSCORE})*                              { insert(ht, "id_ou_funcao", yytext, yylineno); }
+\<|\>|>=|<=|==|<>                                       { insert(ht, "op_relacional", yytext, yylineno); }
+\+|\-|\*|\/                                             { insert(ht, "op_aritmetico", yytext, yylineno); }
+=                                                       { insert(ht, "atribuicao", yytext, yylineno); }
+\(                                                      { insert(ht, "abre_par", yytext, yylineno); }
+\)                                                      { insert(ht, "fecha_par", yytext, yylineno); }
+\{({L}|{D}|{S}|{WHITESPACE}|{TAB})*\}                   { remove_first_and_last_char(yytext); insert(ht, "comentario", yytext, yylineno);}
+,                                                       { insert(ht, "virgula", yytext, yylineno); }
+;                                                       { insert(ht, "ponto_e_virg", yytext, yylineno); }
+@                                                       { insert(ht, "chamada", yytext, yylineno); }
 .                                                       { printf("(%d,ERROR,\"%s\")\n", yylineno, yytext); return 0; }
 
 %%
 
 int main() {
-  ht = ht_new();
+
+  ht = (struct hash_table*)malloc(sizeof(struct hash_table));
+  initialize_hash_table(ht);
 
   yylex();
 
   ht_dump(ht);
 
-  ht_del_hash_table(ht);
+  delete_hash_table(ht);
 
   return 0;
 }
