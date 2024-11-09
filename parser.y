@@ -93,7 +93,7 @@ int error_reported = 0;
 %type <string> EXPRESSION
 
 // Declaração do símbolo inicial e configurações adicionais
-%start S
+%start PROGRAMA
 %locations
 %debug
 
@@ -123,11 +123,19 @@ LISTA_FUNCOES:
 // Não-terminal FUNCAO: Definição de uma função
 FUNCAO:
     TOKEN_INICIO_FUNCAO FUNCAO_DECLARACAO TOKEN_FIM_FUNCAO {
-        // Produção para função: delimitadores de início e fim e declaração da função
         print_production("FUNCAO -> TOKEN_INICIO_FUNCAO FUNCAO_DECLARACAO TOKEN_FIM_FUNCAO");
     }
-    | VAZIO {
-        // Produção para função vazia (epsilon)
+    | TOKEN_INICIO_FUNCAO FUNCAO_DECLARACAO error { 
+        yyerror_with_location(&@1, "Erro de sintaxe no fim da função"); 
+        yyerrok; 
+        yyclearin; 
+    }
+    | error TOKEN_FIM_FUNCAO { 
+        yyerror_with_location(&@1, "Erro de sintaxe no início da função"); 
+        yyerrok; 
+        yyclearin; 
+    }
+    | {
         print_production("FUNCAO -> epsilon");
     }
     ;
@@ -135,8 +143,12 @@ FUNCAO:
 // Não-terminal FUNCAO_DECLARACAO: Declaração de função
 FUNCAO_DECLARACAO:
     FUNCAO_NOME FUNCAO_RETORNO FUNCAO_ARGS FUNCAO_CORPO {
-        // Declaração completa da função com nome, retorno, argumentos e corpo
         print_production("FUNCAO_DECLARACAO -> FUNCAO_NOME FUNCAO_RETORNO FUNCAO_ARGS FUNCAO_CORPO");
+    }
+    | error FUNCAO_CORPO { 
+        yyerror_with_location(&@1, "Erro de sintaxe na declaração da função"); 
+        yyerrok; 
+        yyclearin; 
     }
     ;
 
@@ -154,7 +166,7 @@ FUNCAO_RETORNO:
         // Produção para tipo de retorno
         print_production("FUNCAO_RETORNO -> TOKEN_TIPO FUNCAO_RETORNO_TIPO");
     }
-    | VAZIO {
+    | {
         // Retorno vazio (epsilon)
         print_production("FUNCAO_RETORNO -> epsilon");
     }
@@ -171,8 +183,307 @@ FUNCAO_RETORNO_TIPO:
     | TOKEN_REAL {
         print_production("FUNCAO_RETORNO_TIPO -> TOKEN_REAL");
     }
+    ;
+
+// Argumentos de Função
+FUNCAO_ARGS:
+    FUNCAO_ARGS_CORPO {
+        print_production("FUNCAO_ARGS -> FUNCAO_ARGS_CORPO");
+    }
+    | {
+        print_production("FUNCAO_ARGS -> epsilon");
+    }
+    ;
+
+FUNCAO_ARGS_CORPO:
+    LISTA_ARGS {
+        print_production("FUNCAO_ARGS_CORPO -> LISTA_ARGS");
+    }
+    ;
+
+LISTA_ARGS:
+    ARG_DECLARACAO LISTA_ARGS {
+        print_production("LISTA_ARGS -> ARG_DECLARACAO LISTA_ARGS");
+    }
+    | ARG_DECLARACAO {
+        print_production("LISTA_ARGS -> ARG_DECLARACAO");
+    }
+    ;
+
+ARG_DECLARACAO:
+    TIPO_ARG LISTA_IDENTIFICADORES {
+        print_production("ARG_DECLARACAO -> TIPO_ARG LISTA_IDENTIFICADORES");
+    }
+    ;
+
+LISTA_IDENTIFICADORES:
+    TOKEN_IDENTIFICADOR ',' LISTA_IDENTIFICADORES {
+        print_production("LISTA_IDENTIFICADORES -> TOKEN_IDENTIFICADOR , LISTA_IDENTIFICADORES");
+    }
+    | TOKEN_IDENTIFICADOR {
+        print_production("LISTA_IDENTIFICADORES -> TOKEN_IDENTIFICADOR");
+    }
+    ;
+
+  // Corpo da Função
+FUNCAO_CORPO:
+    '{' LISTA_DECLARACOES '}' {
+        print_production("FUNCAO_CORPO -> { LISTA_DECLARACOES }");
+    }
+    ;
+
+LISTA_DECLARACOES:
+    DECLARACAO LISTA_DECLARACOES {
+        print_production("LISTA_DECLARACOES -> DECLARACAO LISTA_DECLARACOES");
+    }
+    | DECLARACAO {
+        print_production("LISTA_DECLARACOES -> DECLARACAO");
+    }
+    ;
+
+DECLARACAO:
+    ESCREVA_DECLARACAO
+    | CHAMA_DECLARACAO
+    | VARIAVEL_DECLARACAO
+    | SE_DECLARACAO
+    | ENQUANTO_DECLARACAO
+    | ATRIBUICAO_DECLARACAO
+    | RETORNA_DECLARACAO
+    ;
+
+ESCREVA_DECLARACAO:
+    TOKEN_ESCREVA ESCREVA_CORPO ';' {
+        print_production("ESCREVA_DECLARACAO -> TOKEN_ESCREVA ESCREVA_CORPO ;");
+    }
+    ;
+
+ESCREVA_CORPO:
+    TOKEN_LITERAL {
+        print_production("ESCREVA_CORPO -> TOKEN_LITERAL");
+    }
+    | TOKEN_IDENTIFICADOR {
+        print_production("ESCREVA_CORPO -> TOKEN_IDENTIFICADOR");
+    }
+    ;
+
+CHAMA_DECLARACAO:
+    TOKEN_CHAMA TOKEN_CHAMADA TOKEN_IDENTIFICADOR CHAMA_ARGS ';' {
+        print_production("CHAMA_DECLARACAO -> TOKEN_CHAMA TOKEN_CHAMADA TOKEN_IDENTIFICADOR CHAMA_ARGS ;");
+    }
+    ;
+
+CHAMA_ARGS:
+    TOKEN_IDENTIFICADOR CHAMA_ARGS {
+        print_production("CHAMA_ARGS -> TOKEN_IDENTIFICADOR CHAMA_ARGS");
+    }
+    | TOKEN_IDENTIFICADOR {
+        print_production("CHAMA_ARGS -> TOKEN_IDENTIFICADOR");
+    }
+    | {
+        print_production("CHAMA_ARGS -> epsilon");
+    }
+    ;
+
+VARIAVEL_DECLARACAO:
+    VARIAVEL_TIPO VARIAVEL_DECLARACAO_CORPO {
+        print_production("VARIAVEL_DECLARACAO -> VARIAVEL_TIPO VARIAVEL_DECLARACAO_CORPO");
+    }
+    ;
+
+VARIAVEL_DECLARACAO_CORPO:
+    TOKEN_IDENTIFICADOR ';' {
+        print_production("VARIAVEL_DECLARACAO_CORPO -> TOKEN_IDENTIFICADOR ;");
+    }
+    | ATRIBUICAO_DECLARACAO {
+        print_production("VARIAVEL_DECLARACAO_CORPO -> ATRIBUICAO_DECLARACAO");
+    }
+    ;
+
+VARIAVEL_TIPO:
+    TOKEN_INTEIRO {
+        print_production("VARIAVEL_TIPO -> TOKEN_INTEIRO");
+    }
+    | TOKEN_REAL {
+        print_production("VARIAVEL_TIPO -> TOKEN_REAL");
+    }
+    | TOKEN_CARACTERE {
+        print_production("VARIAVEL_TIPO -> TOKEN_CARACTERE");
+    }
     | TOKEN_LITERAL {
-        print_production("FUNCAO_RETORNO_TIPO -> TOKEN_LITERAL");
+        print_production("VARIAVEL_TIPO -> TOKEN_LITERAL");
+    }
+    ;
+
+RETORNA_DECLARACAO:
+    TOKEN_RETORNA RETORNA_CORPO ';' {
+        print_production("RETORNA_DECLARACAO -> TOKEN_RETORNA RETORNA_CORPO ;");
+    }
+    ;
+
+RETORNA_CORPO:
+    TOKEN_IDENTIFICADOR {
+        print_production("RETORNA_CORPO -> TOKEN_IDENTIFICADOR");
+    }
+    | VALOR {
+        print_production("RETORNA_CORPO -> VALOR");
+    }
+    ;
+
+SE_DECLARACAO:
+    TOKEN_SE SE_CABECALHO SE_CORPO SENAO_SE_BLOCO SENAO_BLOCO TOKEN_FIM_SE {
+        print_production("SE_DECLARACAO -> TOKEN_SE SE_CABECALHO SE_CORPO SENAO_SE_BLOCO SENAO_BLOCO TOKEN_FIM_SE");
+    }
+    ;
+
+SE_CABECALHO:
+    '(' EXPRESSAO_BOOLEANA ')' TOKEN_ENTAO {
+        print_production("SE_CABECALHO -> ( EXPRESSAO_BOOLEANA ) TOKEN_ENTAO");
+    }
+    ;
+
+SENAO_SE_BLOCO:
+    TOKEN_SENAO TOKEN_SE SE_CABECALHO SE_CORPO {
+        print_production("SENAO_SE_BLOCO -> TOKEN_SENAO TOKEN_SE SE_CABECALHO SE_CORPO");
+    }
+    | {
+        print_production("SENAO_SE_BLOCO -> epsilon");
+    }
+    ;
+
+SENAO_BLOCO:
+    TOKEN_SENAO SE_CORPO {
+        print_production("SENAO_BLOCO -> TOKEN_SENAO SE_CORPO");
+    }
+    | {
+        print_production("SENAO_BLOCO -> epsilon");
+    }
+    ;
+
+SE_CORPO:
+    FUNCAO_CORPO {
+        print_production("SE_CORPO -> FUNCAO_CORPO");
+    }
+    ;
+
+
+ENQUANTO_DECLARACAO:
+    TOKEN_ENQUANTO '(' EXPRESSAO_BOOLEANA ')' TOKEN_FACA ENQUANTO_CORPO TOKEN_FIM_ENQUANTO {
+        print_production("ENQUANTO_DECLARACAO -> TOKEN_ENQUANTO ( EXPRESSAO_BOOLEANA ) TOKEN_FACA ENQUANTO_CORPO TOKEN_FIM_ENQUANTO");
+    }
+    ;
+
+ENQUANTO_CORPO:
+    FUNCAO_CORPO {
+        print_production("ENQUANTO_CORPO -> FUNCAO_CORPO");
+    }
+    ;
+
+ENQUANTO_DECLARACAO:
+    TOKEN_ENQUANTO '(' EXPRESSAO_BOOLEANA ')' TOKEN_FACA ENQUANTO_CORPO TOKEN_FIM_ENQUANTO {
+        print_production("ENQUANTO_DECLARACAO -> TOKEN_ENQUANTO ( EXPRESSAO_BOOLEANA ) TOKEN_FACA ENQUANTO_CORPO TOKEN_FIM_ENQUANTO");
+    }
+    ;
+
+ENQUANTO_CORPO:
+    FUNCAO_CORPO {
+        print_production("ENQUANTO_CORPO -> FUNCAO_CORPO");
+    }
+    ;
+
+
+ATRIBUICAO_DECLARACAO:
+    TOKEN_IDENTIFICADOR '=' EXPRESSAO ';' {
+        print_production("ATRIBUICAO_DECLARACAO -> TOKEN_IDENTIFICADOR = EXPRESSAO ;");
+    }
+    ;
+
+EXPRESSAO:
+    CHAMA_DECLARACAO
+    | TOKEN_IDENTIFICADOR
+    | EXPRESSAO_MATEMATICA
+    | VALOR
+    ;
+
+
+EXPRESSAO_MATEMATICA:
+    TERMO_MATEMATICO EXPRESSAO_SOMA_SUB {
+        print_production("EXPRESSAO_MATEMATICA -> TERMO_MATEMATICO EXPRESSAO_SOMA_SUB");
+    }
+    | TERMO_MATEMATICO {
+        print_production("EXPRESSAO_MATEMATICA -> TERMO_MATEMATICO");
+    }
+    ;
+
+EXPRESSAO_SOMA_SUB:
+    TOKEN_SOMA EXPRESSAO_MATEMATICA {
+        print_production("EXPRESSAO_SOMA_SUB -> TOKEN_SOMA EXPRESSAO_MATEMATICA");
+    }
+    | TOKEN_SUB EXPRESSAO_MATEMATICA {
+        print_production("EXPRESSAO_SOMA_SUB -> TOKEN_SUB EXPRESSAO_MATEMATICA");
+    }
+    ;
+
+TERMO_MATEMATICO:
+    FATOR_MATEMATICO EXPRESSAO_MULT_DIV {
+        print_production("TERMO_MATEMATICO -> FATOR_MATEMATICO EXPRESSAO_MULT_DIV");
+    }
+    | FATOR_MATEMATICO {
+        print_production("TERMO_MATEMATICO -> FATOR_MATEMATICO");
+    }
+    ;
+
+EXPRESSAO_MULT_DIV:
+    TOKEN_MULT TERMO_MATEMATICO {
+        print_production("EXPRESSAO_MULT_DIV -> TOKEN_MULT TERMO_MATEMATICO");
+    }
+    | TOKEN_DIVISAO TERMO_MATEMATICO {
+        print_production("EXPRESSAO_MULT_DIV -> TOKEN_DIVISAO TERMO_MATEMATICO");
+    }
+    ;
+
+FATOR_MATEMATICO:
+    SINAL_MATEMATICO FATOR_PRIMARIO_MATEMATICO {
+        print_production("FATOR_MATEMATICO -> SINAL_MATEMATICO FATOR_PRIMARIO_MATEMATICO");
+    }
+    ;
+
+SINAL_MATEMATICO:
+    TOKEN_SOMA {
+        print_production("SINAL_MATEMATICO -> TOKEN_SOMA");
+    }
+    | TOKEN_SUB {
+        print_production("SINAL_MATEMATICO -> TOKEN_SUB");
+    }
+    | {
+        print_production("SINAL_MATEMATICO -> epsilon");
+    }
+    ;
+
+FATOR_PRIMARIO_MATEMATICO:
+    TOKEN_IDENTIFICADOR {
+        print_production("FATOR_PRIMARIO_MATEMATICO -> TOKEN_IDENTIFICADOR");
+    }
+    | TOKEN_NUMERO {
+        print_production("FATOR_PRIMARIO_MATEMATICO -> TOKEN_NUMERO");
+    }
+    | '(' EXPRESSAO_MATEMATICA ')' {
+        print_production("FATOR_PRIMARIO_MATEMATICO -> ( EXPRESSAO_MATEMATICA )");
+    }
+    ;
+
+
+EXPRESSAO_BOOLEANA:
+    TERMO_BOOLEANO TOKEN_OP_RELACIONAL TERMO_BOOLEANO {
+        print_production("EXPRESSAO_BOOLEANA -> TERMO_BOOLEANO TOKEN_OP_RELACIONAL TERMO_BOOLEANO");
+    }
+    ;
+
+TERMO_BOOLEANO:
+    TOKEN_IDENTIFICADOR {
+        print_production("TERMO_BOOLEANO -> TOKEN_IDENTIFICADOR");
+    }
+    | VALOR {
+        print_production("TERMO_BOOLEANO -> VALOR");
     }
     ;
 
