@@ -8,6 +8,12 @@ void init_hash_table(hash_table *ht)
 {
   ht->max_size = TABLE_MAX_SIZE;
   ht->buckets = (node **)malloc(sizeof(node *) * ht->max_size);
+
+  for (int i = 0; i < ht->max_size; i++)
+  {
+    ht->buckets[i] = NULL;
+  }
+
   return;
 }
 
