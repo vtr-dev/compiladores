@@ -16,8 +16,7 @@ QUOTE \"
 #include<string.h>
 #include<stdlib.h>
 #include "hash_table.h"
-
-hash_table *ht = NULL; 
+extern hash_table *ht;
 
 %}
 
@@ -40,27 +39,6 @@ hash_table *ht = NULL;
 ,                                                       { insert(ht, yytext, "virgula", yylineno); }
 ;                                                       { insert(ht, yytext, "ponto_e_virg", yylineno); }
 @                                                       { insert(ht, yytext, "chamada", yylineno); }
-.                                                       { printf("(%d,ERROR,\"%s\")\n", yylineno, yytext); return 0; }
+.                                                       { printf("(%d,ERROR,\"%s\")\n", yylineno, yytext); }
 
 %%
-
-#define LINE 10
-
-int main() {
-
-  ht = (hash_table*)malloc(sizeof(hash_table));
-  init_hash_table(ht);
-
-  yylex();
-
-  delete(ht,"escreva");
-
-  ht_dump(ht);
-
-  printf("\nNo line search: %s\n", search(ht, "funcao"));
-  printf("Search in line: %s\n", search_in_line(ht, "funcao", 4));
-
-  drop_hash_table(ht);
-
-  return 0;
-}

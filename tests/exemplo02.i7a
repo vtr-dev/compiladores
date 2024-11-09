@@ -1,0 +1,6 @@
+funcao mensagem
+escreva "Oi mundo!\n";
+fimfuncao
+funcao principal
+chama @mensagem;
+fimfuncao
