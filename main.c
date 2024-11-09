@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "hash_table.h"
+#include "syntactic.tab.h"
 #include <string.h>
 
 extern int yyparse(); // Declaração da função de análise sintática
@@ -42,7 +43,7 @@ int main(int argc, char **argv)
 
   if (number_errors == 0)
   {
-    listSymbols();
+    ht_dump(ht);
     fprintf(stdout, "\nTotal de %d produções utilizadas sem erros.\n", production_count);
   }
 
