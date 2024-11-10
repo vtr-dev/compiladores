@@ -5,8 +5,6 @@
 #include "hash_table.h"
 
 extern int yylex();
-extern char* yytext;
-extern FILE *yyin;
 extern char current_line[1024];
 extern int errors_number;
 extern int yylineno;
