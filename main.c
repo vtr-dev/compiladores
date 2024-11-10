@@ -2,6 +2,7 @@
 #include "hash_table.h"
 #include "syntactic.tab.h"
 #include <string.h>
+#include <stdlib.h>
 
 extern int yyparse(); // Declaração da função de análise sintática
 extern int yylex();   // Declaração da função de análise léxica

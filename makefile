@@ -1,7 +1,7 @@
 CC = gcc
 FLEX = flex
 BISON = bison
-CFLAGS = -Ilexical-analyzer -Isyntactic-analyzer
+CFLAGS = -Ilexical -Isyntactic
 
 LEX_SRC = lexical/lexical.l
 LEX_OUT = lexical/lexical.yy.c

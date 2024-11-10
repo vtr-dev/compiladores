@@ -7,11 +7,12 @@
 
 // Declaração das funções externas fornecidas pelo analisador léxico
 extern int yylex();
-extern YYSTYPE yylval;
 extern char* yytext;
 extern FILE *yyin;
 extern int number_errors;
-extern char current_line[1024];
+extern int yylineno;
+extern int line_number;
+extern int column_number;
 extern int verbose;
 
 // Variável global para contar produções
@@ -30,6 +31,8 @@ typedef struct YYLTYPE {
 } YYLTYPE;
 
 // Protótipos das funções de tratamento de erros
+
+void yyerror(const char *s);
 void yyerror_with_location(YYLTYPE *yylloc, const char *s);
 void print_production(const char* production);
 
@@ -51,8 +54,7 @@ void print_production(const char* production);
             (Current).first_column = (Current).last_column =          \
                 YYRHSLOC(Rhs, 0).last_column;                        \
         }                                                            \
-        strncpy((Current).text, current_line, sizeof(current_line)); \
-        (Current).text[sizeof(current_line) - 1] = '\0';             \
+        sprintf((Current).text, "%d", yylineno); \
     } while (0)
 
 // Variável global para indicar se um erro foi reportado
@@ -135,9 +137,6 @@ FUNCAO:
         yyerror_with_location(&@1, "Erro de sintaxe no início da função"); 
         yyerrok; 
         yyclearin; 
-    }
-    | {
-        print_production("FUNCAO -> epsilon");
     }
     ;
 
@@ -287,9 +286,6 @@ CHAMA_ARGS:
     }
     | TOKEN_IDENTIFICADOR {
         print_production("CHAMA_ARGS -> TOKEN_IDENTIFICADOR");
-    }
-    | {
-        print_production("CHAMA_ARGS -> epsilon");
     }
     ;
 
@@ -494,11 +490,20 @@ TERMO_BOOLEANO:
 
 %%
 
+void yyerror(const char *s) {
+    YYLTYPE yylloc;
+    yylloc.first_line = yylloc.last_line = yylineno;
+    yylloc.first_column = yylloc.last_column = column_number;
+    sprintf(yylloc.text, "%d", yylineno);
+    yyerror_with_location(&yylloc, s);
+    number_errors++;
+}
+
 // Implementação da função de tratamento de erros com localização
 void yyerror_with_location(YYLTYPE *yylloc, const char *s) {
     // Imprime uma mensagem de erro com a localização do erro
     fprintf(stderr, "\033[1;33m\033[1mErro sintático na linha %d, coluna %d:\033[0m %s\n", yylloc->first_line, yylloc->last_column, s);
-    fprintf(stderr, "\033[1;33mLinha do erro sintático:\033[0m \"%s\"\n\n", yylloc->text);
+    fprintf(stderr, "\033[1;33mLinha do erro sintático:\033[0m \"%s\"\n\n", yytext);
 }
 
 // Implementação da função para imprimir a produção utilizada
