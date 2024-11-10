@@ -48,11 +48,11 @@ int main(int argc, char **argv)
 
   if (errors_number == 0)
   {
-    fprintf(stdout, "\n~> Compilado com sucesso!\n\n");
+    fprintf(stdout, "\n~> Compilado com sucesso! ✅\n\n");
   }
   else
   {
-    fprintf(stdout, "\n~> Compilação falhou com %d erro(s)!\n\n", errors_number);
+    fprintf(stdout, "\n~> Compilação falhou com %d erro(s)! ❌\n\n", errors_number);
   }
 
   fclose(file);

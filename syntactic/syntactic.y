@@ -424,7 +424,7 @@ void yyerror(const char *s) {
 }
 
 void yyerror_detailed(YYLTYPE *yylloc, const char *s) {
-  fprintf(stderr, "~> Erro sintático - linha %d, coluna %d: %s\n", yylloc->first_line, yylloc->last_column, s);
+  fprintf(stderr, "\n~> Erro sintático - linha %d, coluna %d: %s\n", yylloc->first_line, yylloc->last_column, s);
   fprintf(stderr, "~> Linha do erro: \"%s\"\n\n", current_line);
 }
 
