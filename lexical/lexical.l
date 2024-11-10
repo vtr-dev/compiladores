@@ -74,6 +74,6 @@ fimenquanto                                              { insert(ht, yytext, yy
 ;                                                       { insert(ht, yytext, "ponto_e_virg", yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_PONTO_E_VIRG; }
 @                                                       { insert(ht, yytext, "chamada", yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_CHAMADA; }
 {NEW_LINE}                                              { current_column = 1; clear_current_line(); }
-.                                                       { fprintf(stderr, "~> Erro léxico - linha %d, coluna %d: %s\n", yylineno, current_column, yytext); }
+.                                                       { fprintf(stderr, "\n🟣 Erro léxico - linha %d, coluna %d: %s\n\n", yylineno, current_column, yytext); }
 
 %%

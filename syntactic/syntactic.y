@@ -97,7 +97,6 @@ LISTA_FUNCOES:
       production("LISTA_FUNCOES -> FUNCAO");
   }
   | error LISTA_FUNCOES {
-      yyerror("ERRO NA DEFINICAO DE FUNCAO");
       yyerrok;
       yyclearin;
   };
@@ -107,7 +106,6 @@ FUNCAO:
     production("FUNCAO -> TOKEN_INICIO_FUNCAO FUNCAO_DECLARACAO TOKEN_FIM_FUNCAO");
   }
   | TOKEN_INICIO_FUNCAO error TOKEN_FIM_FUNCAO {
-      yyerror("ERRO NA DEFINICAO DE FUNCAO");
       yyerrok;
       yyclearin;
   };
@@ -117,7 +115,6 @@ FUNCAO_DECLARACAO:
     production("FUNCAO_DECLARACAO -> FUNCAO_NOME FUNCAO_RETORNO FUNCAO_ARGS FUNCAO_CORPO");
   }
   | error FUNCAO_CORPO { 
-    yyerror("ERRO NA DECLARAÇAO DE FUNCAO"); 
     yyerrok; 
     yyclearin; 
   };
@@ -175,7 +172,6 @@ ARG_DECLARACAO:
     production("ARG_DECLARACAO -> TIPO_ARG LISTA_IDENTIFICADORES TOKEN_PONTO_E_VIRG");
   }
   | error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NA DECLARAÇAO DE ARGUMENTO");
       yyerrok;
       yyclearin;
   };
@@ -215,7 +211,6 @@ DECLARACAO:
   | ATRIBUICAO_DECLARACAO
   | RETORNA_DECLARACAO
   | error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NA DECLARAÇAO");
       yyerrok;
       yyclearin;
   };
@@ -225,7 +220,6 @@ ESCREVA_DECLARACAO:
     production("ESCREVA_DECLARACAO -> TOKEN_ESCREVA ESCREVA_CORPO TOKEN_PONTO_E_VIRG");
   }
   | TOKEN_ESCREVA error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NA DECLARAÇÃO 'ESCREVA'");
       yyerrok;
       yyclearin;
   };
@@ -243,7 +237,6 @@ CHAMA_DECLARACAO:
     production("CHAMA_DECLARACAO -> TOKEN_CHAMA TOKEN_CHAMADA TOKEN_IDENTIFICADOR CHAMA_ARGS TOKEN_PONTO_E_VIRG");
   }
   | TOKEN_CHAMA error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NA CHAMADA DE FUNCAO");
       yyerrok;
       yyclearin;
   };
@@ -269,7 +262,6 @@ VARIAVEL_DECLARACAO_CORPO:
     production("VARIAVEL_DECLARACAO_CORPO -> ATRIBUICAO_DECLARACAO");
   }
   | error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NO CORPO DA DECLARAÇÃO DE VARIAVEL");
       yyerrok;
       yyclearin;
   };
@@ -293,7 +285,6 @@ RETORNA_DECLARACAO:
     production("RETORNA_DECLARACAO -> TOKEN_RETORNA RETORNA_CORPO TOKEN_PONTO_E_VIRG");
   }
   | TOKEN_RETORNA error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NA DECLARACAO 'RETORNA'");
       yyerrok;
       yyclearin;
   };
@@ -319,7 +310,6 @@ SE_DECLARACAO:
     production("SE_DECLARACAO -> TOKEN_SE SE_CABECALHO SE_CORPO SENAO_SE_BLOCO");
   }
   | error TOKEN_FIM_SE {
-      yyerror("ERRO NA DECLARAÇÃO 'SE'");
       yyerrok;
       yyclearin;
   };
@@ -329,7 +319,6 @@ SE_CABECALHO:
     production("SE_CABECALHO -> TOKEN_ABRE_PAR EXPRESSAO_BOOLEANA TOKEN_FECHA_PAR TOKEN_ENTAO");
   }
   | error TOKEN_ENTAO {
-      yyerror("ERRO NO CABECALHO DO 'SE'");
       yyerrok;
       yyclearin;
   };
@@ -343,6 +332,10 @@ SENAO_SE_BLOCO:
   }
   | TOKEN_FIM_SE {
     production("SENAO_SE_BLOCO -> TOKEN_FIM_SE");
+  }
+  | TOKEN_SENAO_SE error TOKEN_PONTO_E_VIRG {
+      yyerrok;
+      yyclearin;
   };
 
 SE_CORPO:
@@ -356,7 +349,6 @@ ENQUANTO_DECLARACAO:
     production("ENQUANTO_DECLARACAO -> TOKEN_ENQUANTO TOKEN_ABRE_PAR EXPRESSAO_BOOLEANA TOKEN_FECHA_PAR TOKEN_FACA ENQUANTO_CORPO TOKEN_FIM_ENQUANTO");
   }
   | error TOKEN_FIM_ENQUANTO {
-      yyerror("ERRO NA DECLARAÇÃO 'ENQUANTO'");
       yyerrok;
       yyclearin;
   };
@@ -371,7 +363,6 @@ ATRIBUICAO_DECLARACAO:
     production("ATRIBUICAO_DECLARACAO -> TOKEN_IDENTIFICADOR TOKEN_ATRIBUICAO EXPRESSAO TOKEN_PONTO_E_VIRG");
   }
   | TOKEN_IDENTIFICADOR error TOKEN_PONTO_E_VIRG {
-      yyerror("ERRO NA DECLARAÇÃO DE ATRIBUICAO");
       yyerrok;
       yyclearin;
   };
@@ -461,7 +452,7 @@ void yyerror(const char *s) {
 }
 
 void yyerror_detailed(YYLTYPE *yylloc, const char *s) {
-  fprintf(stderr, "\n~> Erro sintático - linha %d, coluna %d: %s\n", yylloc->first_line, yylloc->last_column, s);
+  fprintf(stderr, "\n🟠 Erro sintático - linha %d, coluna %d: %s\n", yylloc->first_line, yylloc->last_column, s);
   fprintf(stderr, "~> Linha do erro: \"%s\"\n\n", current_line);
 }
 

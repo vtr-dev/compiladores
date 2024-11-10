@@ -75,14 +75,14 @@ funcao principal
     a = a ++ 1; { ERRO Dois operadores + consecutivos }
     a = a -- 1; { ERRO Dois operadores - consecutivos }
     a = a + * 1; { ERRO Operadores + e * consecutivos }
-    a = a * / 1; { ERRO Operadores * e / consecutivos }
+    a = a * / 1; { ERRO Operadores * e consecutivos }
     a = a + ; { ERRO Operador + sem operando }
     a = +a; { Operador + }
     a = a = a - 1; { ERRO Atribuicao encadeada nao suportada }
     {OLHAR} a == a; { ERRO Uso do operador de igualdade == em vez de = }
     a = "a + 1; { ERRO String nao encerrada }
     a = a + "1; { ERRO String nao encerrada }
-    a = a / / b; { ERRO Dois operadores / consecutivos }
+    a = a / / b; { ERRO Dois operadores consecutivos }
     {OLHAR} a = ) a + 1; { ERRO Expressao comeca com parenteses de fechamento ) }
     a = a + 1; extra; { ERRO Tokens extras apos a expressao }
     {OLHAR} a = a + 1; ; { ERRO Ponto e virgula extra }
@@ -92,7 +92,7 @@ funcao principal
     a = (a + (b - c)); { Correto, mas incluido para verificar erro oculto }
     a = (a + b) * (c - d; { ERRO Parenteses de fechamento ausente }
     a = a + (b * c) - d); { ERRO Parenteses de fechamento extra ) }
-    a = a + (b * c) / ; { ERRO Operador / sem operando a direita }
+    a = a + (b * c) / ; { ERRO Operador sem operando a direita }
     a = a * (b + c)) / d; { ERRO Parenteses de fechamento extra ) }
     a = (a + b) * (c - d)) / e; { ERRO Parenteses de fechamento extra ) }
     a = a + (b + (c - d)); { Correto, mas incluido para verificar erro oculto }
@@ -102,7 +102,7 @@ funcao principal
     a = a + (b * c)) / (d - e); { ERRO Parenteses de fechamento extra ) }
     {OLHAR} a = a + (b * c / d - e); { Correto, mas incluido para verificar erro oculto }
     a = a + (b * c / d - ); { ERRO Operador - sem operando a direita }
-    a = a + (b * c / ) - d; { ERRO Operador / sem operando }
+    a = a + (b * c / ) - d; { ERRO Operador sem operando }
     {OLHAR} a = a + () - d; { ERRO Expressao vazia dentro dos parenteses }
     {OLHAR} a = a + ( * c) - d; { ERRO Operador * sem operando a esquerda }
     {OLHAR} a = a + (b * ) - d; { ERRO Operador * sem operando a direita }
