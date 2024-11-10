@@ -11,7 +11,6 @@ extern FILE *yyin;    // Declaração do arquivo de entrada
 
 int number_errors = 0;
 int current_column = 1;
-int production_count = 0;
 int verbose = 0;
 hash_table *ht = NULL;
 
@@ -41,10 +40,14 @@ int main(int argc, char **argv)
 
   yyparse();
 
-  if (number_errors == 0)
+  if (verbose)
   {
     ht_dump(ht);
-    fprintf(stdout, "\nTotal de %d produções utilizadas sem erros.\n", production_count);
+  }
+
+  if (number_errors == 0)
+  {
+    fprintf(stdout, "\n~> Compilado com sucesso.\n");
   }
 
   fclose(file);

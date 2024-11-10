@@ -430,5 +430,4 @@ void production(const char* production) {
   if(verbose){
     fprintf(stdout, "Produção utilizada: %s\n", production);
   }
-  production_count++;
 }
