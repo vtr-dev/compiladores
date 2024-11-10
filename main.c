@@ -4,10 +4,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-extern int yyparse(); // Declaração da função de análise sintática
-extern int yylex();   // Declaração da função de análise léxica
-extern char *yytext;  // Declaração do texto do token
-extern FILE *yyin;    // Declaração do arquivo de entrada
+extern int yyparse();
+extern int yylex();
+extern char *yytext;
+extern FILE *yyin;
 
 int errors_number = 0;
 char current_line[1024];
@@ -19,19 +19,18 @@ int main(int argc, char **argv)
 {
   if (argc < 2)
   {
-    fprintf(stderr, "Uso: %s <arquivo de código fonte>\n", argv[0]);
+    fprintf(stderr, "USO CORRETO ~> %s <codigo_fonte>\n", argv[0]);
     return 1;
   }
-  if (argc >= 3 && !strcmp(argv[2], "-v"))
+  if (argc >= 3 && !strcmp(argv[2], "-verbose"))
   {
-    printf("VERBOSE ATIVADO\n");
     verbose = 1;
   }
 
   FILE *file = fopen(argv[1], "r");
   if (!file)
   {
-    fprintf(stderr, "Não foi possível abrir o arquivo %s\n", argv[1]);
+    fprintf(stderr, "Arquivo %s não encontrado\n", argv[1]);
     return 1;
   }
   yyin = file;
@@ -46,7 +45,7 @@ int main(int argc, char **argv)
     ht_dump(ht);
   }
 
-  if (errors_number == 0)
+  if (!errors_number)
   {
     fprintf(stdout, "\n~> Compilado com sucesso! ✅\n\n");
   }
