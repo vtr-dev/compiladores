@@ -26,12 +26,12 @@ QUOTE \"
 %%
 
 funcao                                                  { insert(ht, yytext, yytext, yylineno); return TOKEN_INICIO_FUNCAO; } 
-fimfuncao                                               { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_FUNCAO; } 
+fimfuncao                                                { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_FUNCAO; } 
 chama                                                   { insert(ht, yytext, yytext, yylineno); return TOKEN_CHAMA; } 
 retorna                                                 { insert(ht, yytext, yytext, yylineno); return TOKEN_RETORNA; } 
 tipo                                                    { insert(ht, yytext, yytext, yylineno); return TOKEN_TIPO; } 
 args                                                    { insert(ht, yytext, yytext, yylineno); return TOKEN_INICIO_ARGS; } 
-fimargs                                                 { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_ARGS; } 
+fimargs                                                  { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_ARGS; } 
 escreva                                                 { insert(ht, yytext, yytext, yylineno); return TOKEN_ESCREVA; } 
 inteiro                                                 { insert(ht, yytext, yytext, yylineno); return TOKEN_INTEIRO; } 
 real                                                    { insert(ht, yytext, yytext, yylineno); return TOKEN_REAL; } 
@@ -40,10 +40,10 @@ literal                                                 { insert(ht, yytext, yyt
 se                                                      { insert(ht, yytext, yytext, yylineno); return TOKEN_SE; } 
 entao                                                   { insert(ht, yytext, yytext, yylineno); return TOKEN_ENTAO; } 
 senao                                                   { insert(ht, yytext, yytext, yylineno); return TOKEN_SENAO; } 
-fimse                                                   { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_SE; } 
+fimse                                                    { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_SE; } 
 enquanto                                                { insert(ht, yytext, yytext, yylineno); return TOKEN_ENQUANTO; } 
 faca                                                    { insert(ht, yytext, yytext, yylineno); return TOKEN_FACA; } 
-fimenquanto                                             { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_ENQUANTO; }                                  
+fimenquanto                                              { insert(ht, yytext, yytext, yylineno); return TOKEN_FIM_ENQUANTO; }                                  
 {QUOTE}({D}|{L}|{S}|{WHITESPACE}|{TAB}|\\n)*{QUOTE}     { insert(ht, yytext, "string_literal", yylineno); return TOKEN_STRING_LITERAL; }
 ({WHITESPACE}|{TAB}|[\r]|{NEW_LINE})+                   { insert(ht, yytext, "vazio", yylineno);}
 [0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?                     { insert(ht, yytext, "numero", yylineno); return TOKEN_NUMERO; }
