@@ -47,6 +47,7 @@ inteiro                                                 { insert(ht, yytext, yyt
 real                                                    { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_REAL; } 
 caractere                                               { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_CARACTERE; }
 literal                                                 { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_LITERAL; } 
+senao{WHITESPACE}+se                                    { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_SENAO_SE; } 
 se                                                      { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_SE; } 
 entao                                                   { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_ENTAO; } 
 senao                                                   { insert(ht, yytext, yytext, yylineno); append_to_current_line(yytext); current_column += yyleng; return TOKEN_SENAO; } 

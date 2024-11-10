@@ -1,0 +1,686 @@
+funcao principal
+args
+    inteiro a, b;
+fimargs
+
+{Exemplo 31}
+se (usuarioLogado == true) entao
+    se (nivelAcesso == "Admin") entao
+        escreva "Acesso total concedido\n";
+    senao
+        escreva "Acesso limitado concedido\n";
+    fimse
+fimse
+{Verifica o nivel de acesso do usuario logado}
+
+{Exemplo 32}
+se (temperatura > 0) entao
+    se (temperatura > 30) entao
+        escreva "Clima muito quente\n";
+    senao se (temperatura > 20) entao
+        escreva "Clima ameno\n";
+    senao
+        escreva "Clima fresco\n";
+    fimse
+senao
+    escreva "Clima abaixo de zero\n";
+fimse
+{Classifica o clima com base na temperatura}
+
+{Exemplo 33}
+se (dia < 1) entao
+    escreva "Dia invalido\n";
+senao se (dia <= 7) entao
+    se (dia == 1) entao
+        escreva "Domingo\n";
+    senao
+        escreva "Dia da semana\n";
+    fimse
+senao
+    escreva "Dia fora do intervalo\n";
+fimse
+{Identifica o dia da semana com verificacoes adicionais}
+
+{Exemplo 34}
+se (saldo >= 1000) entao
+    escreva "Cliente VIP\n";
+    se (saldo >= 5000) entao
+        escreva "Cliente Platinum\n";
+    fimse
+senao se (saldo >= 500) entao
+    escreva "Cliente Regular\n";
+fimse
+{Classifica o cliente com base no saldo}
+
+{Exemplo 35}
+se (tipoProduto == "Eletronico") entao
+    se (garantia >= 12) entao
+        escreva "Garantia estendida\n";
+    senao
+        escreva "Garantia padrao\n";
+    fimse
+senao se (tipoProduto == "Moveis") entao
+    escreva "Sem garantia\n";
+senao
+    escreva "Tipo de produto desconhecido\n";
+fimse
+{Determina a garantia com base no tipo de produto}
+
+{Exemplo 36}
+se (idade >= 18) entao
+    se (idade >= 65) entao
+        escreva "Senior\n";
+    senao
+        escreva "Adulto\n";
+    fimse
+senao se (idade >= 13) entao
+    escreva "Adolescente\n";
+senao
+    escreva "Crianca\n";
+fimse
+{Classifica a faixa etaria com mais detalhes}
+
+{Exemplo 37}
+se (nota1 >= 50) entao
+    se (nota2 >= 50) entao
+        escreva "Aprovado com boas notas\n";
+    senao
+        escreva "Aprovado, mas com nota baixa na segunda avaliacao\n";
+    fimse
+senao
+    escreva "Reprovado\n";
+fimse
+{Determina a aprovacao com base em duas notas}
+
+{Exemplo 38}
+se (hora >= 6) entao
+    se (hora < 12) entao
+        escreva "Manha\n";
+    senao se (hora < 18) entao
+        escreva "Tarde\n";
+    senao
+        escreva "Noite\n";
+    fimse
+senao
+    escreva "Hora invalida\n";
+fimse
+{Classifica o periodo do dia com base na hora}
+
+{Exemplo 39}
+se (peso > 70) entao
+    se (altura > 1.80) entao
+        escreva "Atleta\n";
+    senao
+        escreva "Obeso\n";
+    fimse
+senao
+    escreva "Peso normal\n";
+fimse
+{Classifica a pessoa com base em peso e altura}
+
+{Exemplo 41}
+se (diaAno <= 31) entao
+    se (mes == 1) entao
+        escreva "Janeiro\n";
+    senao
+        escreva "Outro mes\n";
+    fimse
+senao se (diaAno <= 60) entao
+    escreva "Fevereiro\n";
+senao
+    escreva "Dia fora do intervalo\n";
+fimse
+{Identifica o mes com base no dia do ano}
+
+{Exemplo 42}
+se (tipoUsuario == "Aluno") entao
+    se (matriculaAtiva == true) entao
+        escreva "Aluno ativo\n";
+    senao
+        escreva "Aluno inativo\n";
+    fimse
+senao se (tipoUsuario == "Professor") entao
+    se (contratoValido == true) entao
+        escreva "Professor contratado\n";
+    senao
+        escreva "Professor sem contrato\n";
+    fimse
+senao
+    escreva "Tipo de usuario desconhecido\n";
+fimse
+{Verifica o status do usuario com base no tipo}
+
+{Exemplo 43}
+se (mes == 12) entao
+    escreva "Final do ano\n";
+    se (dia > 20) entao
+        escreva "Natal\n";
+    fimse
+senao
+    escreva "Nao e dezembro\n";
+fimse
+{Identifica eventos no final do ano}
+
+{Exemplo 44}
+se (nivelBateria < 20) entao
+    escreva "Bateria fraca\n";
+    se (modoEconomia == false) entao
+        escreva "Ativar modo economia?\n";
+    fimse
+senao
+    escreva "Bateria suficiente\n";
+fimse
+{Gerencia o nivel da bateria com opcao de economia}
+
+{Exemplo 45}
+se (hora >= 9) entao
+    se (hora < 12) entao
+        escreva "Inicio da jornada\n";
+    senao se (hora < 17) entao
+        escreva "Meio da jornada\n";
+    senao
+        escreva "Fim da jornada\n";
+    fimse
+senao
+    escreva "Jornada ainda nao iniciou\n";
+fimse
+{Controla o status da jornada de trabalho}
+
+{Exemplo 46}
+se (resposta == "sim") entao
+    escreva "Confirmado\n";
+    se (confirmacao == "total") entao
+        escreva "Aprovacao completa\n";
+    fimse
+senao se (resposta == "nao") entao
+    escreva "Rejeitado\n";
+senao
+    escreva "Resposta invalida\n";
+fimse
+{Processa a resposta com confirmacao adicional}
+
+{Exemplo 48}
+se (usuarioExiste == true) entao
+    se (senhaCorreta == true) entao
+        escreva "Login bem sucedido\n";
+    senao
+        escreva "Senha incorreta\n";
+    fimse
+senao
+    escreva "Usuario nao encontrado\n";
+fimse
+{Valida o login do usuario com verificacoes de senha}
+
+{Exemplo 49}
+se (tipoEvento == "Conferencia") entao
+    se (pais == "Brasil") entao
+        escreva "Conferencia nacional\n";
+    senao
+        escreva "Conferencia internacional\n";
+    fimse
+senao se (tipoEvento == "Workshop") entao
+    escreva "Workshop tecnico\n";
+senao
+    escreva "Tipo de evento desconhecido\n";
+fimse
+{Classifica o evento com base no tipo e local}
+
+{Exemplo 50}
+se (nivelEstresse > 80) entao
+    escreva "Alto nivel de estresse\n";
+    se (praticaExercicio == true) entao
+        escreva "Praticar exercicio recomendado\n";
+    senao
+        escreva "Praticar exercicio necessario\n";
+    fimse
+senao
+    escreva "Nivel de estresse normal\n";
+fimse
+
+{Exemplo 51}
+se (usuarioLogado == true) entao
+    se (nivelAcesso == "Admin") entao
+        se (permissaoCompleta == true) entao
+            escreva "Acesso total e completo\n";
+        senao
+            escreva "Acesso total com permissao limitada\n";
+        fimse
+    senao se (nivelAcesso == "Editor") entao
+        escreva "Acesso de edicao concedido\n";
+    senao
+        escreva "Acesso limitado\n";
+    fimse
+senao
+    escreva "Usuario nao esta logado\n";
+fimse
+{Verifica o nivel e permissao de acesso do usuario}
+
+{Exemplo 52}
+se (idade >= 18) entao
+    se (idade >= 60) entao
+        escreva "Senior\n";
+    senao
+        se (idade >= 30) entao
+            escreva "Adulto\n";
+        senao
+            escreva "Jovem adulto\n";
+        fimse
+    fimse
+senao se (idade >= 13) entao
+    se (idade >= 16) entao
+        escreva "Adolescente avancado\n";
+    senao
+        escreva "Adolescente\n";
+    fimse
+senao
+    escreva "Crianca\n";
+fimse
+{Classifica a faixa etaria com varios niveis}
+
+{Exemplo 53}
+se (temperatura > 0) entao
+    se (temperatura > 30) entao
+        escreva "Clima muito quente\n";
+    senao se (temperatura > 20) entao
+        se (umidade > 70) entao
+            escreva "Clima quente e humido\n";
+        senao
+            escreva "Clima quente e seco\n";
+        fimse
+    senao
+        escreva "Clima ameno\n";
+    fimse
+senao
+    se (temperatura >= 10) entao
+        escreva "Clima frio\n";
+    senao
+        escreva "Clima muito frio\n";
+    fimse
+fimse
+{Classifica o clima com base na temperatura e umidade}
+
+{Exemplo 54}
+se (tipoConta == "Corrente") entao
+    se (saldo < 0) entao
+        escreva "Conta em debito\n";
+    senao
+        se (saldo > 1000) entao
+            escreva "Saldo positivo alto\n";
+        senao
+            escreva "Saldo positivo baixo\n";
+        fimse
+    fimse
+senao se (tipoConta == "Poupanca") entao
+    se (saldo >= 5000) entao
+        escreva "Poupanca com rendimento alto\n";
+    senao
+        escreva "Poupanca com rendimento baixo\n";
+    fimse
+senao
+    escreva "Tipo de conta desconhecido\n";
+fimse
+{Analisa o tipo de conta e o saldo}
+
+{Exemplo 56}
+se (respostaUsuario == "sim") entao
+    se (confirmacao == "total") entao
+        se (autorizacao == "admin") entao
+            escreva "Aprovacao completa e autorizada\n";
+        senao
+            escreva "Aprovacao completa sem autorizacao admin\n";
+        fimse
+    senao
+        escreva "Aprovacao parcial\n";
+    fimse
+senao se (respostaUsuario == "nao") entao
+    se (motivo == "falta") entao
+        escreva "Rejeitado por falta\n";
+    senao
+        escreva "Rejeitado por outro motivo\n";
+    fimse
+senao
+    escreva "Resposta invalida\n";
+fimse
+{Processa a resposta do usuario com varias confirmacoes}
+
+{Exemplo 57}
+se (nivelEstresse > 70) entao
+    se (praticaExercicio == true) entao
+        se (duracaoExercicio >= 30) entao
+            escreva "Reduzir estresse com exercicio adequado\n";
+        senao
+            escreva "Exercicio insuficiente para reduzir estresse\n";
+        fimse
+    senao
+        escreva "Nao praticou exercicio para reduzir estresse\n";
+    fimse
+senao se (nivelEstresse > 40) entao
+    escreva "Nivel de estresse moderado\n";
+senao
+    escreva "Nivel de estresse baixo\n";
+fimse
+{Gerencia o estresse com base em exercicios praticados}
+
+{Exemplo 58}
+se (tipoVeiculo == "Carro") entao
+    se (combustivel > 50) entao
+        escreva "Carro com combustivel suficiente\n";
+    senao
+        se (tipoCombustivel == "Gasolina") entao
+            escreva "Carro precisa de gasolina\n";
+        senao se (tipoCombustivel == "Diesel") entao
+            escreva "Carro precisa de diesel\n";
+        senao
+            escreva "Tipo de combustivel desconhecido\n";
+        fimse
+    fimse
+senao se (tipoVeiculo == "Moto") entao
+    se (combustivel > 20) entao
+        escreva "Moto com combustivel suficiente\n";
+    senao
+        escreva "Moto precisa de combustivel\n";
+    fimse
+senao
+    escreva "Tipo de veiculo desconhecido\n";
+fimse
+{Verifica o combustivel baseado no tipo de veiculo}
+
+{Exemplo 59}
+se (pontuacao >= 90) entao
+    escreva "Nota A\n";
+senao se (pontuacao >= 80) entao
+    se (participacao >= 80) entao
+        escreva "Nota B com boa participacao\n";
+    senao
+        escreva "Nota B com participacao baixa\n";
+    fimse
+senao se (pontuacao >= 70) entao
+    se (trabalhoEntrega == true) entao
+        escreva "Nota C com trabalhos entregues\n";
+    senao
+        escreva "Nota C sem trabalhos entregues\n";
+    fimse
+senao
+    escreva "Nota abaixo do esperado\n";
+fimse
+{Atribui nota com base na pontuacao e outros fatores}
+
+{Exemplo 60}
+se (tipoUsuario == "Cliente") entao
+    se (idade >= 18) entao
+        se (possuiConta == true) entao
+            escreva "Cliente adulto com conta\n";
+        senao
+            escreva "Cliente adulto sem conta\n";
+        fimse
+    senao
+        escreva "Cliente menor de idade\n";
+    fimse
+senao se (tipoUsuario == "Fornecedor") entao
+    se (ativo == true) entao
+        escreva "Fornecedor ativo\n";
+    senao
+        escreva "Fornecedor inativo\n";
+    fimse
+senao
+    escreva "Tipo de usuario desconhecido\n";
+fimse
+{Verifica o status do cliente ou fornecedor com base em idade e conta}
+
+{Exemplo 61}
+se (nivelAcesso == "Admin") entao
+    se (permiteAlterar == true) entao
+        escreva "Pode alterar configuracoes\n";
+    senao
+        escreva "Nao pode alterar configuracoes\n";
+    fimse
+    se (permiteExcluir == true) entao
+        escreva "Pode excluir registros\n";
+    senao
+        escreva "Nao pode excluir registros\n";
+    fimse
+senao
+    se (nivelAcesso == "Usuario") entao
+        se (permiteEditar == true) entao
+            escreva "Pode editar dados\n";
+        senao
+            escreva "Nao pode editar dados\n";
+        fimse
+    senao
+        escreva "Acesso restrito\n";
+    fimse
+fimse
+{Define permissoes com base no nivel de acesso}
+
+{Exemplo 62}
+se (saldoInvestimento > 100000) entao
+    se (tipoInvestimento == "Acoes") entao
+        se (risco == "Alto") entao
+            escreva "Investimento em acoes de alto risco\n";
+        senao
+            escreva "Investimento em acoes de baixo risco\n";
+        fimse
+    senao
+        escreva "Investimento em outro tipo com saldo alto\n";
+    fimse
+senao se (saldoInvestimento > 50000) entao
+    se (tipoInvestimento == "Fundos") entao
+        escreva "Investimento em fundos\n";
+    senao
+        escreva "Investimento em outros produtos\n";
+    fimse
+senao
+    escreva "Investimento basico\n";
+fimse
+{Classifica o investimento com base no saldo e tipo}
+
+{Exemplo 63}
+se (diaSemana == "Sabado") entao
+    se (evento == "Festa") entao
+        escreva "Participar da festa no sabado\n";
+    senao
+        escreva "Dia livre no sabado\n";
+    fimse
+    se (evento == "Festa") entao
+        escreva "Participar da festa no sabado\n";
+    senao
+        escreva "Dia livre no sabado\n";
+    fimse
+senao se (diaSemana == "Domingo") entao
+    se (esporte == "Futebol") entao
+        escreva "Assistir jogo de futebol\n";
+    senao
+        se (evento == "Festa") entao
+            escreva "Participar da festa no sabado\n";
+        senao
+            escreva "Dia livre no sabado\n";
+        fimse
+        escreva "Descanso no domingo\n";
+    fimse
+senao
+    se (diaSemana == "Quarta") entao
+        se (aulaExtra == true) entao
+            escreva "Participar da aula extra\n";
+        senao
+            escreva "Dia normal de trabalho\n";
+        fimse
+    senao
+        escreva "Dia util normal\n";
+    fimse
+fimse
+{Determina atividades baseadas no dia da semana e eventos}
+
+{Exemplo 64}
+se (nivelEstudante == "Graduacao") entao
+    se (curso == "Engenharia") entao
+        se (semestre >= 6) entao
+            escreva "Aluno avancado em Engenharia\n";
+        senao
+            escreva "Aluno iniciante em Engenharia\n";
+        fimse
+    senao
+        escreva "Aluno de outro curso na Graduacao\n";
+    fimse
+senao se (nivelEstudante == "PosGraduacao") entao
+    se (areaPesquisa == "Computacao") entao
+        escreva "Pos-graduando em Computacao\n";
+    senao
+        escreva "Pos-graduando em outra area\n";
+    fimse
+senao
+    escreva "Nivel de estudante desconhecido\n";
+fimse
+{Classifica o estudante com base no nivel e curso}
+
+{Exemplo 65}
+se (tipoPagamento == "Credito") entao
+    se (limiteCredito >= valorCompra) entao
+        escreva "Pagamento aprovado com credito\n";
+    senao
+        escreva "Limite de credito insuficiente\n";
+    fimse
+    se (parcelas > 12) entao
+        escreva "Numero de parcelas excede o permitido\n";
+    senao
+        escreva "Pagamento em parcelas aceito\n";
+    fimse
+senao se (tipoPagamento == "Debito") entao
+    se (saldoConta >= valorCompra) entao
+        escreva "Pagamento aprovado com debito\n";
+    senao
+        escreva "Saldo insuficiente na conta\n";
+    fimse
+senao
+    escreva "Tipo de pagamento invalido\n";
+fimse
+{Valida o pagamento com base no tipo e saldo ou limite}
+
+{Exemplo 66}
+se (categoriaProduto == "Eletronico") entao
+    se (garantiaEstendida == true) entao
+        se (acessoriosIncluidos == true) entao
+            escreva "Produto com garantia e acessorios\n";
+        senao
+            escreva "Produto com garantia sem acessorios\n";
+        fimse
+    senao
+        escreva "Produto sem garantia\n";
+    fimse
+senao se (categoriaProduto == "Moveis") entao
+    se (material == "Madeira") entao
+        escreva "Moveis de madeira\n";
+    senao
+        escreva "Moveis de outro material\n";
+    fimse
+senao
+    escreva "Categoria de produto desconhecida\n";
+fimse
+{Classifica o produto com base na categoria e detalhes}
+
+{Exemplo 67}
+se (nivelAcesso == "SuperAdmin") entao
+    se (servidorOnline == true) entao
+        se (backupCompleto == true) entao
+            escreva "Servidor em pleno funcionamento com backup\n";
+        senao
+            escreva "Servidor em funcionamento sem backup\n";
+        fimse
+    senao
+        escreva "Servidor offline\n";
+    fimse
+    se (sistemaAtualizado == true) entao
+        escreva "Sistema atualizado\n";
+    senao
+        escreva "Sistema desatualizado\n";
+    fimse
+senao
+    escreva "Acesso nao autorizado para SuperAdmin\n";
+fimse
+{Verifica o status do servidor e sistema para SuperAdmin}
+
+{Exemplo 68}
+se (tipoProjeto == "Software") entao
+    se (fase == "Desenvolvimento") entao
+        se (progresso >= 80) entao
+            escreva "Quase pronto para teste\n";
+        senao
+            escreva "Em desenvolvimento ativo\n";
+        fimse
+    senao se (fase == "Teste") entao
+        se (bugsEncontrados > 0) entao
+            escreva "Corrigir bugs encontrados\n";
+        senao
+            escreva "Pronto para deploy\n";
+        fimse
+    senao
+        escreva "Fase desconhecida do projeto\n";
+    fimse
+senao
+    escreva "Tipo de projeto nao e software\n";
+fimse
+{Gerencia o status do projeto de software com base na fase e progresso}
+
+{Exemplo 69}
+se (diaAno >= 1) entao
+    se (diaAno <= 31) entao
+        se (mes == 1) entao
+            escreva "Janeiro\n";
+        senao
+            escreva "Outro mes em janeiro\n";
+        fimse
+    senao se (diaAno <= 60) entao
+        se (anoBissexto == true) entao
+            escreva "Fevereiro com dia extra\n";
+        senao
+            escreva "Fevereiro normal\n";
+        fimse
+    senao
+        escreva "Dia fora do intervalo esperado\n";
+    fimse
+senao
+    escreva "Dia invalido no ano\n";
+fimse
+{Identifica o mes com base no dia do ano e ano bissexto}
+
+{Exemplo 70}
+se (situacaoAluno == "Aprovado") entao
+    se (media >= 9) entao
+        escreva "Aprovado com honras\n";
+    senao
+        se (presenca >= 90) entao
+            escreva "Aprovado com boa presenca\n";
+        senao
+            escreva "Aprovado sem boa presenca\n";
+        fimse
+    fimse
+senao se (situacaoAluno == "Reprovado") entao
+    se (motivo == "Falta") entao
+        escreva "Reprovado por falta\n";
+    senao se (motivo == "Nota") entao
+        escreva "Reprovado por nota\n";
+    senao
+        escreva "Reprovado por outra razao\n";
+    fimse
+senao
+    se (motivo == "Falta") entao
+        escreva "Reprovado por falta\n";
+    senao se (motivo == "Nota") entao
+        escreva "Reprovado por nota\n";
+    senao se (motivo == "Falta") entao
+            escreva "Reprovado por falta\n";
+        senao se (motivo == "Nota") entao
+            escreva "Reprovado por nota\n";
+        senao
+            se (motivo == "Falta") entao
+                escreva "Reprovado por falta\n";
+            senao se (motivo == "Nota") entao
+                escreva "Reprovado por nota\n";
+            senao
+                escreva "Reprovado por outra razao\n";
+            fimse
+            escreva "Reprovado por outra razao\n";
+        fimse
+        escreva "Reprovado por outra razao\n";
+    escreva "Situacao do aluno desconhecida\n";
+fimse
+fimfuncao
