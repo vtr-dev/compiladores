@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 {
   if (argc < 2)
   {
-    fprintf(stderr, "USO CORRETO ~> %s <codigo_fonte>\n", argv[0]);
+    fprintf(stderr, "USO CORRETO ~> %s <arquivo_codigo_fonte>\n", argv[0]);
     return 1;
   }
   if (argc >= 3 && !strcmp(argv[2], "-verbose"))
