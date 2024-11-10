@@ -10,7 +10,6 @@ extern char *yytext;  // Declaração do texto do token
 extern FILE *yyin;    // Declaração do arquivo de entrada
 
 int number_errors = 0;
-int line_number = 1;
 int column_number = 1;
 int production_count = 0;
 int verbose = 0;

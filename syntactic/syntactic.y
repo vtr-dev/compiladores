@@ -9,7 +9,6 @@ extern char* yytext;
 extern FILE *yyin;
 extern int number_errors;
 extern int yylineno;
-extern int line_number;
 extern int column_number;
 extern int verbose;
 
