@@ -9,7 +9,6 @@
 extern hash_table *ht;
 extern int current_column;
 extern char current_line[1024];
-extern FILE *yyin;
 
 void clear_current_line() {
   current_line[0] = '\0';
