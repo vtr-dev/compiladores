@@ -1,0 +1,27 @@
+funcao principal
+    a = * a + 1; { ERRO Operador * sem operando a esquerda }
+    a = ; { ERRO Ausencia de expressao apos = }
+    a + 1 = a; { ERRO Expressao invalida no lado esquerdo da atribuicao }
+    = a + 1; { ERRO Ausencia de variavel a esquerda do = }
+    a == a + 1; { ERRO Uso do operador de igualdade == em vez de = }
+    a === a; { ERRO Operador de igualdade tripla === invalido }
+    a = ; { ERRO Ausencia de expressao apos = }
+    a == a; { ERRO Uso do operador de igualdade == em vez de = }
+    a = ) a + 1; { ERRO Expressao comeca com parenteses de fechamento ) }
+    a = a + 1; ; { ERRO Ponto e virgula extra }
+    a = ; { ERRO Atribuicao sem expressao }
+    a = a + (b * c / d - e); { Correto, mas incluido para verificar erro oculto }
+    a = a + () - d; { ERRO Expressao vazia dentro dos parenteses }
+    a = a + ( * c) - d; { ERRO Operador * sem operando a esquerda }
+    a = a + (b * ) - d; { ERRO Operador * sem operando a direita }
+    a = a + (b / c - d; { ERRO Parenteses de fechamento ausente }
+    a = a + b) * c - d; { ERRO Parenteses de abertura ausente }
+    a = a + (b * c) - d) + e; { ERRO Parenteses de fechamento extra ) }
+    a = a + ((b * c) - d; { ERRO Parenteses de fechamento ausente }
+    a = (a + b) * (c - d)) + e; { ERRO Parenteses de fechamento extra ) }
+    a = (a + b) * ((c - d) + e; { ERRO Parenteses de fechamento ausente }
+    a = a + (b * c)) / (d - e; { ERRO Parenteses de fechamento ausente }
+    a = a + b * (c - d)) / e; { ERRO Parenteses de fechamento extra ) }
+    a = a + (b * (c - d) / e; { ERRO Parenteses de fechamento ausente }
+    a = a + (b * c) / (d - e)) + f; { ERRO Parenteses de fechamento extra ) }
+fimfuncao
