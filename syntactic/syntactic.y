@@ -7,7 +7,8 @@
 extern int yylex();
 extern char* yytext;
 extern FILE *yyin;
-extern int number_errors;
+extern char current_line[1024];
+extern int errors_number;
 extern int yylineno;
 extern int current_column;
 extern int verbose;
@@ -418,12 +419,12 @@ void yyerror(const char *s) {
   yylloc.first_column = yylloc.last_column = current_column;
   sprintf(yylloc.text, "%d", yylineno);
   yyerror_detailed(&yylloc, s);
-  number_errors++;
+  errors_number++;
 }
 
 void yyerror_detailed(YYLTYPE *yylloc, const char *s) {
-  fprintf(stderr, "Erro sintático - linha %d, coluna %d: %s\n", yylloc->first_line, yylloc->last_column, s);
-  fprintf(stderr, "~> \"%s\"\n\n", yytext);
+  fprintf(stderr, "~> Erro sintático - linha %d, coluna %d: %s\n", yylloc->first_line, yylloc->last_column, s);
+  fprintf(stderr, "~> Linha do erro: \"%s\"\n\n", current_line);
 }
 
 void production(const char* production) {

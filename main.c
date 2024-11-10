@@ -9,7 +9,8 @@ extern int yylex();   // Declaração da função de análise léxica
 extern char *yytext;  // Declaração do texto do token
 extern FILE *yyin;    // Declaração do arquivo de entrada
 
-int number_errors = 0;
+int errors_number = 0;
+char current_line[1024];
 int current_column = 1;
 int verbose = 0;
 hash_table *ht = NULL;
@@ -45,9 +46,13 @@ int main(int argc, char **argv)
     ht_dump(ht);
   }
 
-  if (number_errors == 0)
+  if (errors_number == 0)
   {
-    fprintf(stdout, "\n~> Compilado com sucesso.\n");
+    fprintf(stdout, "\n~> Compilado com sucesso!\n\n");
+  }
+  else
+  {
+    fprintf(stdout, "\n~> Compilação falhou com %d erro(s)!\n\n", errors_number);
   }
 
   fclose(file);
