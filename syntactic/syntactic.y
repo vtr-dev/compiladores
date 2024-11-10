@@ -172,9 +172,10 @@ LISTA_ARGS:
     production("LISTA_ARGS -> ARG_DECLARACAO");
   };
 
+
 ARG_DECLARACAO:
-  TIPO_ARG LISTA_IDENTIFICADORES {
-    production("ARG_DECLARACAO -> TIPO_ARG LISTA_IDENTIFICADORES");
+  TIPO_ARG LISTA_IDENTIFICADORES TOKEN_PONTO_E_VIRG {
+    production("ARG_DECLARACAO -> TIPO_ARG LISTA_IDENTIFICADORES TOKEN_PONTO_E_VIRG");
   };
 
 TIPO_ARG:
@@ -429,6 +430,6 @@ void yyerror_detailed(YYLTYPE *yylloc, const char *s) {
 
 void production(const char* production) {
   if(verbose){
-    fprintf(stdout, "Produção utilizada: %s\n", production);
+    fprintf(stdout, "PRODUCAO: %s | LINHA: %d\n", production, yylineno);
   }
 }
