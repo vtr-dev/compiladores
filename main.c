@@ -10,7 +10,7 @@ extern char *yytext;  // Declaração do texto do token
 extern FILE *yyin;    // Declaração do arquivo de entrada
 
 int number_errors = 0;
-int column_number = 1;
+int current_column = 1;
 int production_count = 0;
 int verbose = 0;
 hash_table *ht = NULL;

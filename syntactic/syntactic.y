@@ -9,7 +9,7 @@ extern char* yytext;
 extern FILE *yyin;
 extern int number_errors;
 extern int yylineno;
-extern int column_number;
+extern int current_column;
 extern int verbose;
 
 extern int production_count;
@@ -415,7 +415,7 @@ TERMO_BOOLEANO:
 void yyerror(const char *s) {
   YYLTYPE yylloc;
   yylloc.first_line = yylloc.last_line = yylineno;
-  yylloc.first_column = yylloc.last_column = column_number;
+  yylloc.first_column = yylloc.last_column = current_column;
   sprintf(yylloc.text, "%d", yylineno);
   yyerror_detailed(&yylloc, s);
   number_errors++;
