@@ -13,8 +13,6 @@ extern int yylineno;
 extern int current_column;
 extern int verbose;
 
-extern int production_count;
-
 #define YYLTYPE_IS_DECLARED 1
 
 typedef struct YYLTYPE {
@@ -33,20 +31,20 @@ void production(const char* production);
 #define YYERROR_VERBOSE 1
 
 // Usamos o ChatGPT para solucionar o problema de erro do Bison
-#define YYLLOC_DEFAULT(Current, Rhs, N)                               \
-  do {                                                             \
-    if (N) {                                                     \
-      (Current).first_line   = YYRHSLOC(Rhs, 1).first_line;      \
-      (Current).first_column = YYRHSLOC(Rhs, 1).first_column;    \
-      (Current).last_line    = YYRHSLOC(Rhs, N).last_line;     \
-      (Current).last_column  = YYRHSLOC(Rhs, N).last_column;   \
-    } else {                                                     \
-      (Current).first_line   = (Current).last_line   =          \
-        YYRHSLOC(Rhs, 0).last_line;                          \
-      (Current).first_column = (Current).last_column =          \
-        YYRHSLOC(Rhs, 0).last_column;                        \
-    }                                                            \
-    sprintf((Current).text, "%d", yylineno); \
+#define YYLLOC_DEFAULT(Current, Rhs, N)                          \
+  do {                                                          \
+    if (N) {                                                    \
+      (Current).first_line   = YYRHSLOC(Rhs, 1).first_line;       \
+      (Current).first_column = YYRHSLOC(Rhs, 1).first_column;     \
+      (Current).last_line    = YYRHSLOC(Rhs, N).last_line;      \
+      (Current).last_column  = YYRHSLOC(Rhs, N).last_column;    \
+    } else {                                                    \
+      (Current).first_line   = (Current).last_line   =           \
+        YYRHSLOC(Rhs, 0).last_line;                             \
+      (Current).first_column = (Current).last_column =           \
+        YYRHSLOC(Rhs, 0).last_column;                           \
+    }                                                           \
+    sprintf((Current).text, "%d", yylineno);                    \
   } while (0)
 
 int error_reported = 0;
