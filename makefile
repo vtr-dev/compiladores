@@ -12,12 +12,11 @@ LEX_OBJS = lexical/lexical.yy.o main.o lexical/hash_table.o
 BISON_OBJS = syntactic/syntactic.tab.o
 OBJS = $(LEX_OBJS) $(BISON_OBJS)
 TARGET = compilador
-LIB_PATH = -L/opt/homebrew/opt/flex/lib
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) -o $@ $^ ${LIB_PATH} -lfl
+	$(CC) -o $@ $^ -lfl
 
 lexical/lexical.yy.c: $(LEX_SRC) $(BISON_OUT_H)
 	$(FLEX) -o $@ $<
