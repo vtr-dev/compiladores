@@ -1,0 +1,27 @@
+funcao principal
+  se (situacaoAluno == "Aprovado") entao
+    fimse
+  senao se (situacaoAluno == "Reprovado") entao
+    escreva "oi";
+  senao
+    escreva "daw";
+  fimse
+  escreva "dadw";
+  se (situacaoAluno == "Aprovado") entao
+    fimse
+  senao se (situacaoAluno == "Reprovado") entao
+    escreva "oi";
+    fimse
+  senao
+    escreva "daw";
+  fimse
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+  escreva "dadw";
+fimfuncao

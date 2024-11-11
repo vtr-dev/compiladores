@@ -1,0 +1,24 @@
+funcao area tipo inteiro
+  inteiro base, altura;
+  inteiro a = base * altura;
+  inteiro base;
+  inteiro base = 10;
+  inteiro base = altura;
+  inteiro base = (2 - 3) * 10;
+  inteiro base = altura = 10;
+  inteiro base = chama @gawea adaw fdaw;
+  inteiro base = "dawdaw";
+  real teste = 23.9;
+  
+
+  retorna 1;
+  retorna 3;
+fimfuncao
+
+funcao principal
+  args
+   inteiro base, altura;
+  fimargs
+  inteiro a = chama @area base altura;
+  escreva a;
+fimfuncao
