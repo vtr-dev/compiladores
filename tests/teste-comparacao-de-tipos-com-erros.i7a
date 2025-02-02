@@ -1,0 +1,89 @@
+funcao teste tipo inteiro
+args
+  inteiro a ;
+  real b;
+fimargs
+{ Verificar se a e b sao do mesmo tipo para comparacao }
+se (a < b) entao
+  retorna b;
+senao
+  retorna a;
+fimse
+fimfuncao
+
+funcao principal
+  args
+    inteiro b;
+    real a;
+  fimargs
+
+  literal aaa, bbb;
+  { Verificar se a e b sao do mesmo tipo para comparacao }
+  se (b < a) entao
+    escreva "a < b\n";
+  senao se (a > b) entao
+    escreva "a > b\n";
+  senao
+    escreva "a = b\n";
+  fimse
+
+  int x;
+  real aa, bb;
+  { Verificar se aa e bb sao do mesmo tipo para comparacao }
+  se (aa < x) entao
+    escreva "a < c\n";
+  senao
+    escreva "a > b\n";
+  fimse
+
+  se (x < a) entao
+    escreva "x < a\n";
+  fimse
+
+  literal aaa, bbb;
+  caractere aaaa, bbbb;
+  { Verificar se aaa e bbb sao do mesmo tipo para comparacao }
+  se (aaa == bbbb) entao
+    escreva "a == b\n";
+  senao
+    escreva "a <> b\n";
+  fimse
+
+
+  { Verificar se aaaa e bbbb sao do mesmo tipo para comparacao }
+  se (aaaa == bbb) entao
+    escreva "a == b\n";
+  senao
+    escreva "a != b\n";
+  fimse
+
+  { Verificar comparacao de valores literais e inteiros }
+  se (1 < 2.2) entao
+    escreva "1 < 2\n";
+  senao
+    escreva "1 = 2\n";
+  fimse
+
+
+  { Verificar comparacao entre valores reais }
+  se (1.5 <> 2) entao
+    escreva "a <> b\n";
+  senao
+    escreva "a > b\n";
+  fimse
+
+  { Verificar se aaa e bbb sao do mesmo tipo para comparacao }
+  se (aaa == a) entao
+    escreva "a == b\n";
+  senao
+    escreva "a != b\n";
+  fimse
+
+  { Verificar se aaaa e bbbb sao do mesmo tipo para comparacao }
+  se (bb == bbbb) entao
+    escreva "a == b\n";
+  senao
+    escreva "a != b\n";
+  fimse
+
+fimfuncao

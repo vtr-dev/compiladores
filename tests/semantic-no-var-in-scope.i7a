@@ -1,0 +1,66 @@
+funcao principal
+inteiro resultado1 = x + 5; 
+
+inteiro resultado2 = 10 + y;
+inteiro y = 20; 
+
+booleano condicao = (z > 10); 
+
+inteiro resultado4 = chama @soma a, 5; 
+
+funcao calcula tipo inteiro
+retorna valor; 
+fimfuncao
+
+enquanto (b < 100) faca 
+ escreva b;
+fimenquanto
+
+para (inteiro i = 0; i < 10; i = i + 1) faca
+ escreva j; 
+fimpara
+
+{
+ inteiro k = 30;
+}
+escreva k; 
+
+
+funcao obterNumero tipo inteiro
+retorna numero; 
+fimfuncao
+
+
+inteiro global = 50;
+escreva global; 
+
+
+funcao funcaoA
+inteiro a = 60;
+fimfuncao
+
+funcao funcaoB
+escreva a; 
+fimfuncao
+
+inteiro resultado12 = (10 * p) + 5; 
+
+funcao principal
+{
+ funcao anonima
+ inteiro q = 70;
+ fimfuncao
+}
+escreva q; 
+fimfuncao
+
+para (inteiro r = 0; r < 10; r = r + 1) faca
+fimpara
+escreva r; 
+
+funcao testeArgs
+args
+ inteiro s;
+fimargs
+escreva t;
+fimfuncao

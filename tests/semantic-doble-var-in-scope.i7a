@@ -1,0 +1,72 @@
+funcao principal
+inteiro a = 10;
+inteiro a = 20;
+
+caractere b = 'X';
+caractere b = 'Y'; 
+
+booleano c = verdadeiro;
+booleano c = falso; 
+
+se (c) entao
+ inteiro d = 30;
+fimse
+inteiro d = 40; 
+
+{
+ inteiro e = 50;
+ inteiro e = 60;
+}
+
+enquanto (a < 100) faca
+ inteiro f = 70;
+ inteiro f = 80; 
+fimenquanto
+
+funcao exemplo
+args
+ inteiro g;
+fimargs
+inteiro g = 90; 
+fimfuncao
+
+funcao outroExemplo
+inteiro h = 100;
+{
+ inteiro h = 110;
+}
+fimfuncao
+
+inteiro i = 120;
+inteiro i = 130; 
+
+funcao recursiva
+args
+ inteiro j;
+fimargs
+inteiro j = 140;
+retorna chama @recursiva j - 1;
+fimfuncao
+
+inteiro arr[10];
+inteiro arr[20]; 
+
+funcao principal
+{
+ funcao anonima
+ inteiro k = 150;
+ inteiro k = 160; 
+ fimfuncao
+}
+fimfuncao
+
+inteiro l = 170;
+inteiro l = l + 1; 
+
+para (inteiro m = 0; m < 10; m = m + 1) faca
+ inteiro m = 180; 
+fimpara
+
+inteiro n = 190;
+caractere n = 'Z';
+fimfuncao

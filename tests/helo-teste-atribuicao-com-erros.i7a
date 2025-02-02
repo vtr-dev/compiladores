@@ -1,0 +1,90 @@
+funcao testefuncao tipo inteiro
+    args
+        inteiro base;
+        real altura;
+    fimargs
+    { 1 Erro atribuicao de real para inteiro }
+    inteiro a = altura;
+    
+    { 4 Erro atribuicao de real para argumento inteiro base }
+    base = 2.718;
+    
+    { 5 Erro atribuicao de real para inteiro b a partir do argumento altura }
+    real a_real;
+    a_real = base;    { Erro inteiro para real }
+    inteiro b;
+    b = altura;       { Erro real para inteiro }
+    
+    { 8 Erro atribuicao de inteiro para literal }
+    literal c_literal;
+    c_literal = chama @testefuncao 5 2.0;
+    
+    retorna 1;
+fimfuncao
+
+funcao principal
+
+    { 2 Erro declaracao com tipo incompativel }
+    inteiro a_declarado = 1.5;
+    
+    { Declaracoes corretas }
+    inteiro b = 1;
+    real c, d;
+    literal e, f;
+    caractere g, h;
+    
+    inteiro ab = a_declarado + b; 
+
+    real cd = 1.5;
+    literal ef = "teste";
+    caractere gh = "g";
+    
+    { 6 Erro atribuicao de real para inteiro }
+    inteiro a_variavel;
+    real b_variavel;
+    a_variavel = b_variavel;  { Erro real para inteiro }
+    
+    { Atribuicoes corretas }
+    c = cd;
+    a_variavel = ab;
+    g = gh;
+    f = ef;
+    
+    { 7 Erros atribuicoes de valores literais incompativeis }
+    
+    { 7a Erro atribuicao de literal para real }
+    real a_literal_real;
+    a_literal_real = "texto";
+    
+    { 7b Erro atribuicao de caractere para inteiro }
+    inteiro a_char_int;
+    a_char_int = "c";
+    
+    { 7c Erro atribuicao de literal para caractere nao sei se da erro }
+    caractere a_literal_char;
+    a_literal_char = "texto";
+    
+    { 8 Erro atribuicao de inteiro para literal }
+    literal c_incompativel;
+    c_incompativel = chama @testefuncao a_variavel b_variavel;
+    
+    { 9 Erros atribuicoes de operacoes matematicas incompativeis }
+    
+    { 9a Erro operacao resulta em real, atribuicao para inteiro }
+    inteiro y_inteiro;
+    y_inteiro = 1.5 + 2;
+    
+    { 9b Erro operacao invalida entre literal e inteiro }
+    real w_invalido;
+    w_invalido = "texto" + 3;
+    
+    { 9c Erro operacao invalida para caractere }
+    caractere c_invalido;
+    c_invalido = 65 + "A";
+    
+    { Atribuicoes corretas }
+    inteiro x = chama @testefuncao a_variavel b_variavel;
+    inteiro y = 1 * 5;
+    real w = 1.2 + 3;
+    
+fimfuncao

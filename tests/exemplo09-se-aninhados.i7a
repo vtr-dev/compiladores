@@ -1,0 +1,153 @@
+funcao principal
+args
+    inteiro a, b;
+fimargs
+
+{Exemplo 31}
+se (usuarioLogado == true) entao
+    escreva "Resposta invalida\n";
+fimse
+{Verifica o nivel de acesso do usuario logado}
+
+{Exemplo 32}
+se (temperatura > 0) entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Clima abaixo de zero\n";
+fimse
+{Classifica o clima com base na temperatura}
+
+{Exemplo 33}
+se (dia < 1) entao
+    escreva "Dia invalido\n";
+senao se (dia <= 7) entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Dia fora do intervalo\n";
+fimse
+{Identifica o dia da semana com verificacoes adicionais}
+
+{Exemplo 34}
+se (saldo >= 1000) entao
+    escreva "Cliente VIP\n";
+senao se (saldo >= 500) entao
+    escreva "Cliente Regular\n";
+fimse
+{Classifica o cliente com base no saldo}
+
+{Exemplo 35}
+se (tipoProduto == "Eletronico") entao
+    escreva "Resposta invalida\n";
+senao se (tipoProduto == "Moveis") entao
+    escreva "Sem garantia\n";
+senao
+    escreva "Tipo de produto desconhecido\n";
+fimse
+{Determina a garantia com base no tipo de produto}
+
+{Exemplo 36}
+se (idade >= 18) entao
+    escreva "Resposta invalida\n";
+senao se (idade >= 13) entao
+    escreva "Adolescente\n";
+senao
+    escreva "Crianca\n";
+fimse
+{Classifica a faixa etaria com mais detalhes}
+
+{Exemplo 37}
+se (nota1 >= 50) entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Reprovado\n";
+fimse
+{Determina a aprovacao com base em duas notas}
+
+{Exemplo 38}
+se (hora >= 6) entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Hora invalida\n";
+fimse
+{Classifica o periodo do dia com base na hora}
+
+{Exemplo 39}
+se (peso > 70) entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Peso normal\n";
+fimse
+{Classifica a pessoa com base em peso e altura}
+
+{Exemplo 41}
+se (diaAno <= 31) entao
+    escreva "Resposta invalida\n";
+senao se (diaAno <= 60) entao
+    escreva "Fevereiro\n";
+senao
+    escreva "Dia fora do intervalo\n";
+fimse
+{Identifica o mes com base no dia do ano}
+
+{Exemplo 42}
+se (tipoUsuario == "Aluno") entao
+    escreva "Resposta invalida\n";
+senao se (tipoUsuario == "Professor") entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Tipo de usuario desconhecido\n";
+fimse
+{Verifica o status do usuario com base no tipo}
+
+{Exemplo 43}
+se (mes == 12) entao
+    escreva "Final do ano\n";
+senao
+    escreva "Nao e dezembro\n";
+fimse
+{Identifica eventos no final do ano}
+
+{Exemplo 44}
+se (nivelBateria < 20) entao
+    escreva "Bateria fraca\n";
+senao
+    escreva "Bateria suficiente\n";
+fimse
+{Gerencia o nivel da bateria com opcao de economia}
+
+{Exemplo 45}
+se (hora >= 9) entao
+    escreva "Resposta invalida\n";
+senao
+    escreva "Jornada ainda nao iniciou\n";
+fimse
+{Controla o status da jornada de trabalho}
+
+{Exemplo 46}
+se (resposta == "sim") entao
+    escreva "Confirmado\n";
+senao se (resposta == "nao") entao
+    escreva "Rejeitado\n";
+senao
+    escreva "Resposta invalida\n";
+fimse
+{Processa a resposta com confirmacao adicional}
+
+{Exemplo 48}
+se (usuarioExiste == true) entao
+        escreva "Login bem sucedido\n";
+senao
+    escreva "Usuario nao encontrado\n";
+fimse
+{Valida o login do usuario com verificacoes de senha}
+
+{Exemplo 49}
+se (tipoEvento == "Conferencia") entao
+    escreva "Resposta invalida\n";
+senao se (tipoEvento == "Workshop") entao
+    escreva "Workshop tecnico\n";
+senao
+    escreva "Tipo de evento desconhecido\n";
+fimse
+{Classifica o evento com base no tipo e local}
+fimfuncao

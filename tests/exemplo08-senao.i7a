@@ -1,0 +1,291 @@
+funcao principal
+args
+ inteiro a, b;
+fimargs
+{Exemplo 1}
+se (idade >= 18) entao
+    escreva "Maior de idade\n";
+fimse
+{Verifica se a pessoa e maior de idade}
+
+{Exemplo 2}
+se (nota >= 70) entao
+    escreva "Aprovado\n";
+senao
+    escreva "Reprovado\n";
+fimse
+{Determina se o aluno esta aprovado ou reprovado}
+
+{Exemplo 3}
+se (temperatura > 30) entao
+    escreva "Esta quente\n";
+senao se (temperatura > 20) entao
+    escreva "Esta ameno\n";
+senao
+    escreva "Esta frio\n";
+fimse
+{Classifica a temperatura}
+
+{Exemplo 4}
+se (diaSemana == "Sabado") entao
+    escreva "Dia de descanso\n";
+fimse
+{Verifica se e sabado}
+
+{Exemplo 5}
+se (saldo >= 0) entao
+    escreva "Saldo positivo\n";
+senao
+    escreva "Saldo negativo\n";
+fimse
+{Checa o saldo da conta}
+
+{Exemplo 6}
+se (hora < 12) entao
+    escreva "Bom dia\n";
+senao se (hora < 18) entao
+    escreva "Boa tarde\n";
+senao
+    escreva "Boa noite\n";
+fimse
+{Saudacao baseada na hora do dia}
+
+{Exemplo 8}
+se (peso > 100) entao
+    escreva "Peso acima do limite\n";
+senao se (peso > 80) entao
+    escreva "Peso dentro do limite\n";
+senao
+    escreva "Peso abaixo do ideal\n";
+fimse
+{Avalia o peso do usuario}
+
+{Exemplo 9}
+se (senha == "1234") entao
+    escreva "Acesso concedido\n";
+senao
+    escreva "Acesso negado\n";
+fimse
+{Verifica a senha de acesso}
+
+{Exemplo 10}
+se (mes == 12) entao
+    escreva "E Dezembro\n";
+senao se (mes == 1) entao
+    escreva "E Janeiro\n";
+senao
+    escreva "Outro mes\n";
+fimse
+{Identifica o mes atual}
+
+{Exemplo 11}
+se (altura >= 1.80) entao
+    escreva "Alta\n";
+senao se (altura >= 1.60) entao
+    escreva "Media\n";
+senao
+    escreva "Baixa\n";
+fimse
+{Classifica a altura da pessoa}
+
+{Exemplo 12}
+se (cargo == "Gerente") entao
+    escreva "Salario alto\n";
+senao se (cargo == "Analista") entao
+    escreva "Salario medio\n";
+senao
+    escreva "Salario baixo\n";
+fimse
+{Define o salario baseado no cargo}
+
+{Exemplo 13}
+se (numero1 > numero2) entao
+    escreva "Numero 1 e maior\n";
+senao se (numero1 < numero2) entao
+    escreva "Numero 2 e maior\n";
+senao
+    escreva "Os numeros sao iguais\n";
+fimse
+{Compara dois numeros}
+
+{Exemplo 14}
+se (idade < 13) entao
+    escreva "Crianca\n";
+senao se (idade < 20) entao
+    escreva "Adolescente\n";
+senao se (idade < 65) entao
+    escreva "Adulto\n";
+senao
+    escreva "Idoso\n";
+fimse
+{Classifica a faixa etaria}
+
+{Exemplo 15}
+se (tipoCliente == "VIP") entao
+    escreva "Desconto de 20%\n";
+senao se (tipoCliente == "Regular") entao
+    escreva "Desconto de 10%\n";
+senao
+    escreva "Sem desconto\n";
+fimse
+{Aplica desconto baseado no tipo de cliente}
+
+{Exemplo 16}
+se (dia == 1) entao
+    escreva "Domingo\n";
+senao se (dia == 2) entao
+    escreva "Segunda-feira\n";
+senao se (dia == 3) entao
+    escreva "Terca-feira\n";
+senao se (dia == 4) entao
+    escreva "Quarta-feira\n";
+senao se (dia == 5) entao
+    escreva "Quinta-feira\n";
+senao se (dia == 6) entao
+    escreva "Sexta-feira\n";
+senao se (dia == 7) entao
+    escreva "Sabado\n";
+senao
+    escreva "Dia invalido\n";
+fimse
+{Identifica o dia da semana}
+
+{Exemplo 17}
+se (tipoVeiculo == "Carro") entao
+    escreva "4 rodas\n";
+senao se (tipoVeiculo == "Moto") entao
+    escreva "2 rodas\n";
+senao
+    escreva "Tipo de veiculo desconhecido\n";
+fimse
+{Determina o numero de rodas baseado no tipo de veiculo}
+
+{Exemplo 18}
+se (pontuacao >= 90) entao
+    escreva "A\n";
+senao se (pontuacao >= 80) entao
+    escreva "B\n";
+senao se (pontuacao >= 70) entao
+    escreva "C\n";
+senao se (pontuacao >= 60) entao
+    escreva "D\n";
+senao
+    escreva "F\n";
+fimse
+{Atribui nota baseada na pontuacao}
+
+{Exemplo 19}
+se (nivelEnergia < 20) entao
+    escreva "Baixa energia\n";
+senao
+    escreva "Energia suficiente\n";
+fimse
+{Checa o nivel de energia}
+
+{Exemplo 20}
+se (tipoConta == "Corrente") entao
+    escreva "Taxa mensal aplicavel\n";
+senao
+    escreva "Sem taxa mensal\n";
+fimse
+{Verifica a taxa mensal baseada no tipo de conta}
+
+{Exemplo 21}
+se (categoria == "A") entao
+    escreva "Alta prioridade\n";
+senao se (categoria == "B") entao
+    escreva "Media prioridade\n";
+senao se (categoria == "C") entao
+    escreva "Baixa prioridade\n";
+senao
+    escreva "Categoria desconhecida\n";
+fimse
+{Define a prioridade baseada na categoria}
+
+{Exemplo 22}
+se (saldoInvestimento > 100000) entao
+    escreva "Investidor Premium\n";
+senao se (saldoInvestimento > 50000) entao
+    escreva "Investidor Padrao\n";
+senao
+    escreva "Investidor Basico\n";
+fimse
+{Classifica o investidor baseado no saldo de investimento}
+
+{Exemplo 23}
+se (linguagem == "Portugues") entao
+    escreva "Idioma configurado para Portugues\n";
+senao se (linguagem == "Ingles") entao
+    escreva "Language set to English\n";
+senao
+    escreva "Idioma desconhecido\n";
+fimse
+{Configura o idioma do sistema}
+
+{Exemplo 24}
+se (estoque < 10) entao
+    escreva "Estoque baixo\n";
+senao se (estoque <= 50) entao
+    escreva "Estoque medio\n";
+senao
+    escreva "Estoque alto\n";
+fimse
+{Avalia o nivel de estoque}
+
+{Exemplo 25}
+se (statusPedido == "Entregue") entao
+    escreva "Pedido finalizado\n";
+senao se (statusPedido == "Em andamento") entao
+    escreva "Pedido em processamento\n";
+senao
+    escreva "Pedido pendente\n";
+fimse
+{Verifica o status do pedido}
+
+{Exemplo 26}
+se (tipoPagamento == "Cartao") entao
+    escreva "Pagamento com cartao selecionado\n";
+senao se (tipoPagamento == "Dinheiro") entao
+    escreva "Pagamento em dinheiro selecionado\n";
+senao
+    escreva "Tipo de pagamento invalido\n";
+fimse
+{Seleciona o metodo de pagamento}
+
+{Exemplo 27}
+se (prioridade == "Alta") entao
+    escreva "Processo urgente\n";
+senao
+    escreva "Processo normal\n";
+fimse
+{Define a urgencia do processo}
+
+{Exemplo 28}
+se (distancia > 100) entao
+    escreva "Viagem longa\n";
+senao se (distancia > 50) entao
+    escreva "Viagem media\n";
+senao
+    escreva "Viagem curta\n";
+fimse
+{Classifica a viagem baseada na distancia}
+
+{Exemplo 29}
+se (quantidade < 5) entao
+    escreva "Poucos itens no carrinho\n";
+senao
+    escreva "Itens suficientes no carrinho\n";
+fimse
+{Verifica a quantidade de itens no carrinho de compras}
+
+{Exemplo 30}
+se (tipoUsuario == "Administrador") entao
+    escreva "Acesso total concedido\n";
+senao se (tipoUsuario == "Editor") entao
+    escreva "Acesso limitado concedido\n";
+senao
+    escreva "Acesso restrito\n";
+fimse
+{Determina o nivel de acesso do usuario}
+
+fimfuncao

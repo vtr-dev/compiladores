@@ -1,0 +1,51 @@
+funcao calculaComIfAninhado tipo inteiro
+args
+ inteiro valor;
+fimargs
+se (valor > 10) entao
+   retorna valor;
+senao
+ retorna valor; 
+fimse
+fimfuncao
+
+funcao erroComIfAninhado tipo inteiro
+args
+ inteiro valor;
+fimargs
+ se (valor < 20) entao
+   retorna 10; 
+ senao
+   retorna 5; 
+ fimse
+fimfuncao
+
+funcao faltaRetornoAninhado tipo inteiro
+args
+ inteiro valor;
+fimargs
+se (valor > 10) entao
+   retorna valor;
+senao
+ retorna valor;
+fimse
+fimfuncao
+
+funcao retornoCorretoAninhado tipo inteiro
+args
+ inteiro valor;
+fimargs
+ se (valor < 15) entao
+   escreva "Entre 10 e 15";
+ senao
+   escreva "Maior ou igual a 15";
+ fimse
+fimfuncao
+
+funcao principal
+inteiro valor = 12;
+inteiro a = chama @calculaComIfAninhado valor; 
+inteiro b = chama @erroComIfAninhado valor; 
+inteiro c = chama @faltaRetornoAninhado valor; 
+inteiro d = chama @retornoCorretoAninhado valor; 
+fimfuncao

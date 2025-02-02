@@ -1,0 +1,196 @@
+funcao principal
+{Caso 1 Teste de um unico enquanto simples}
+enquanto (cont > 0) faca
+    escreva letra;
+    escreva "\n";
+    cont = cont - 1;
+fimenquanto
+
+{Caso 2 Teste de dois enquanto alinhados sequencialmente}
+enquanto (i < 10) faca
+    escreva i;
+    i = i + 1;
+fimenquanto
+
+enquanto (j < 5) faca
+    escreva j;
+    j = j + 1;
+fimenquanto
+
+{Caso 3 Teste de tres enquanto alinhados sequencialmente}
+enquanto (x < 3) faca
+    escreva x;
+    x = x + 1;
+fimenquanto
+
+enquanto (y < 6) faca
+    escreva y;
+    y = y + 1;
+fimenquanto
+
+enquanto (z < 9) faca
+    escreva z;
+    z = z + 1;
+fimenquanto
+
+{Caso 4 Teste de enquanto aninhado dentro de outro enquanto}
+enquanto (i < 3) faca
+    escreva "i ";
+    enquanto (j < 2) faca
+        escreva "  j ";
+        j = j + 1;
+    fimenquanto
+    i = i + 1;
+fimenquanto
+
+{Caso 5 Teste de enquanto com bloco se aninhado}
+enquanto (cont > 0) faca
+    se (cont == 0) entao
+        escreva cont;
+    senao
+        escreva cont;
+    fimse
+    cont = cont - 1;
+fimenquanto
+
+{Caso 6 Teste de bloco se com enquanto aninhado}
+se (nivelAcesso == "Admin") entao
+    enquanto (cont > 0) faca
+        escreva "Admin ";
+        cont = cont - 1;
+    fimenquanto
+senao
+    escreva "Acesso limitado\n";
+fimse
+
+{Caso 7 Teste de enquanto com alinhamento incorreto}
+enquanto (x < 10) faca
+escreva x;
+    x = x + 1;
+fimenquanto
+
+{Caso 9 Teste de enquanto com bloco se e multiplos enquanto internos}
+enquanto (a < 5) faca
+    se (2 == 0) entao
+        enquanto (b < 3) faca
+            escreva a;
+            b = b + 1;
+        fimenquanto
+    senao
+        escreva a;
+    fimse
+    a = a + 1;
+fimenquanto
+
+{Caso 10 Teste de enquanto dentro de bloco se com multiplos comandos}
+se (a == 2) entao
+    enquanto (contador < limite) faca
+        escreva contador;
+        contador = contador + 1;
+    fimenquanto
+    escreva "Fim do enquanto\n";
+senao
+    escreva "Condicao nao atendida\n";
+fimse
+
+{Caso 11 Teste de tres enquanto aninhados}
+enquanto (i < 2) faca
+    enquanto (j < 2) faca
+        enquanto (k < 2) faca
+            escreva i;
+            k = k + 1;
+        fimenquanto
+        j = j + 1;
+    fimenquanto
+    i = i + 1;
+fimenquanto
+
+{Caso 12 Teste de enquanto com bloco se aninhado e else}
+enquanto (score < 100) faca
+    se (score >= 90) entao
+        escreva "Excelente!\n";
+    senao
+        escreva "Continue tentando\n";
+    fimse
+    score = score + 10;
+fimenquanto
+
+{Caso 13 Teste de enquanto com multiplos blocos se}
+enquanto (num < 10) faca
+    se (num == 5) entao
+        escreva "Meio do caminho\n";
+    fimse
+    se (num == 9) entao
+        escreva "Ultimo numero\n";
+    fimse
+    num = num + 1;
+fimenquanto
+
+{Caso 14 Teste de enquanto com comandos complexos}
+enquanto (lista == vazio) faca
+    elemento = chama @removerPrimeiro lista;
+    se (elemento == valido) entao
+        chama @processar elemento;
+    senao
+        escreva "Elemento invalido\n";
+    fimse
+fimenquanto
+
+{Caso 15 Teste de enquanto com incremento e decremento misturados}
+enquanto (x < 10) faca
+    escreva x;
+    se (2 == 0) entao
+        x = x + 3;
+    senao
+        x = x - 1;
+    fimse
+fimenquanto
+
+{Caso 16 Teste de enquanto dentro de enquanto com bloco se}
+enquanto (i < 3) faca
+    enquanto (j < 2) faca
+        se (k == 1) entao
+            escreva i;
+        fimse
+        k = k + 1;
+    fimenquanto
+    i = i + 1;
+fimenquanto
+
+{Caso 17 Teste de enquanto com multiplas condicoes}
+enquanto (a < 10) faca
+    escreva a;
+    a = a + 1;
+    b = b - 1;
+fimenquanto
+
+{Caso 18 Teste de enquanto com chamadas de funcao dentro}
+enquanto (a == b) faca
+    resultado = chama @calcular;
+    escreva resultado;
+    chama @atualizar;
+fimenquanto
+
+{Caso 19 Teste de enquanto com diferentes tipos de comandos}
+enquanto (ativo <> 1) faca
+    se (entrada == "sair") entao
+        ativo = falso;
+    senao
+        escreva "Comando recebido\n";
+    fimse
+fimenquanto
+
+{Caso 20 Teste de enquanto com blocos se aninhados e multiplos enquanto}
+enquanto (x < 5) faca
+    se (2 == 0) entao
+        enquanto (y < 3) faca
+            escreva x;
+            y = y + 1;
+        fimenquanto
+    senao
+        escreva x;
+    fimse
+    x = x + 1;
+fimenquanto
+
+fimfuncao

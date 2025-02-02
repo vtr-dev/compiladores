@@ -1,0 +1,66 @@
+ funcao area tipo inteiro
+ args
+    inteiro base, altura;
+ fimargs
+   inteiro a = base * altura;
+   retorna a;
+ fimfuncao
+
+ funcao numero tipo inteiro
+ retorna 10;
+ fimfuncao
+
+funcao areareal tipo real
+ args
+    real base, altura;
+ fimargs
+ real a = base * altura;
+ retorna a;
+ fimfuncao
+
+ funcao h tipo caractere
+ retorna "H";
+ fimfuncao
+
+ funcao hello tipo literal
+ retorna "Hello";
+ fimfuncao
+
+ funcao principal
+ args
+    inteiro base, altura;
+    real base1, altura1;
+ fimargs
+
+ inteiro a = chama @area base altura;
+
+ real b = chama @areareal base1 altura1;
+
+ inteiro num = chama @numero;
+
+ caractere char = chama @h;
+ 
+ literal str = chama @hello;
+
+ escreva a;
+ escreva b;
+ escreva char;
+ escreva str;
+
+ literal chute;
+ inteiro cont;
+ 
+ chute="k";
+ se(char==chute) entao
+    escreva "Acertei!";
+ fimse
+ se (cont < 0) entao
+    escreva "cont < 0";
+ fimse
+ enquanto (cont > 0) faca
+    escreva char;
+    escreva "\n";
+    cont = cont - 1;
+ fimenquanto
+
+ fimfuncao

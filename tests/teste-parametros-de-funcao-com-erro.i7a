@@ -1,0 +1,34 @@
+funcao area tipo inteiro
+    args
+        inteiro base, altura;
+    fimargs
+    inteiro a = base * altura;
+    retorna a;
+fimfuncao
+
+funcao principal
+args
+    inteiro base, altura;
+fimargs
+{ Erro 1 Verificar tipo de parametros }
+inteiro a = chama @area "10" 20;  { Erro passando uma string 10 em vez de um inteiro }
+escreva a;
+
+{ Erro 2 Verificar quantidade de parametros }
+inteiro b = chama @area 10;  { Erro falta o parametro altura }
+escreva b;
+
+{ Erro 3 Verificar existencia da funcao }
+inteiro c = chama @perimeter 10 20;  { Erro funcao @perimeter nao esta definida }
+escreva c;
+
+{ Erro 4 Verificar quantidade de parametros }
+inteiro b = chama @area a a a; { Erro parametro a mais }
+escreva b;
+
+real x;
+{ Erro 5 Verificar quantidade de parametros }
+inteiro b = chama @area a x; { Erro o parametro x e real}
+escreva b;
+
+fimfuncao

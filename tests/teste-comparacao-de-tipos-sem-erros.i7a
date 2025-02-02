@@ -1,0 +1,86 @@
+funcao teste tipo inteiro
+  args
+  inteiro a , b;
+  fimargs
+  se (a < b) entao
+    retorna b;
+  senao
+    retorna a;
+  fimse
+fimfuncao
+
+funcao principal
+  args
+    inteiro a, b;
+  fimargs
+
+  literal aaa, bbb;
+
+  se (a < b) entao
+  escreva "a < b\n";
+  senao se (a > b) entao
+  escreva "a > b\n";
+  senao
+  escreva "a = b\n";
+  fimse
+fimfuncao
+
+funcao principalba
+  real aa, bb;
+  se (aa < bb) entao
+    escreva "a < b\n";
+  senao
+    escreva "a > b\n";
+  fimse
+fimfuncao
+
+funcao principalbbb
+  literal aaa, bbb;
+
+  se (aaa == bbb) entao
+    escreva "a == b\n";
+  senao
+    escreva "a <> b\n";
+  fimse
+fimfuncao
+funcao principalaa
+  caractere aaaa, bbbb;
+
+  se (aaaa == bbbb) entao
+    escreva "a == b\n";
+  senao
+    escreva "a != b\n";
+  fimse
+
+
+  se (1 < 2) entao
+  escreva "1 < 2\n";
+  senao
+  escreva "1 = 2\n";
+  fimse
+
+  se (1.5 <> 2.5) entao
+    escreva "a <> b\n";
+  senao
+    escreva "a > b\n";
+  fimse
+fimfuncao
+
+funcao principalaaa
+literal aaa, bbb;
+se (aaa == bbb) entao
+  escreva "a == b\n";
+senao
+  escreva "a != b\n";
+fimse
+fimfuncao
+
+funcao principalaaaa
+caractere aaaa, bbbb;
+se (aaaa == bbbb) entao
+  escreva "a == b\n";
+senao
+  escreva "a != b\n";
+fimse
+
+fimfuncao

@@ -1,0 +1,104 @@
+{ Comentarios de teste de erros }
+
+{ Erro Declaracao duplicada da funcao numero }
+funcao numero tipo inteiro
+    retorna 20;
+fimfuncao
+
+funcao numero tipo real
+    retorna 25.5;
+fimfuncao
+
+{ Erro Funcao area com tipo de retorno incompativel deveria retornar inteiro mas retorna real }
+funcao area tipo inteiro
+    args
+        inteiro base, altura;
+    fimargs
+    real a = base * altura;
+    retorna a; { Tipo incorreto }
+fimfuncao
+
+{ Erro Funcao faltando Retorno declara tipo inteiro mas nao possui retorno }
+funcao faltandoRetorno tipo inteiro
+    args
+        inteiro x;
+    fimargs
+    inteiro y = x + 10;
+    { Falta retorna y }
+fimfuncao
+
+{ Erro Variavel a declarada duas vezes no mesmo escopo }
+funcao duplicar tipo inteiro
+    args
+        inteiro a;
+    fimargs
+    inteiro b = a * 2; { Redefinicao de a }
+    inteiro b;
+    retorna a;
+fimfuncao
+
+{ Erro Acesso a variavel local de outra funcao }
+funcao acessarVariavel tipo inteiro
+    retorna a; { a nao esta definida neste escopo }
+fimfuncao
+
+{ Erro Declaracao de variavel com mesmo nome do argumento }
+funcao conflitoNome tipo inteiro
+    args
+        inteiro base;
+    fimargs
+    inteiro base = base + 5; { Conflito de nomes }
+    retorna base;
+fimfuncao
+
+{ Erro Variavel local em bloco SE acessivel fora do bloco }
+funcao escopoSE tipo inteiro
+    args
+        inteiro x;
+    fimargs
+    se (x > 0) entao
+        inteiro y = x;
+        escreva y;
+    fimse
+    escreva y; { y nao deve estar acessivel aqui }
+    retorna x;
+fimfuncao
+
+{ Erro Variavel local em bloco ENQUANTO acessivel fora do bloco }
+funcao escopoEnquanto tipo inteiro
+    args
+        inteiro x;
+    fimargs
+    enquanto (x > 0) faca
+        inteiro contador = x;
+        escreva contador;
+        x = x - 1;
+    fimenquanto
+    escreva contador; { contador nao deve estar acessivel aqui }
+    retorna x;
+fimfuncao
+
+{ Funcao principal com multplos erros }
+funcao principal
+    args
+        inteiro base, altura;
+        real base1, altura1;
+    fimargs
+
+    inteiro a = chama @area base altura; { area retorna real esperado inteiro erro de tipo }
+
+    inteiro num = chama @numero; { numero foi declarado duas vezes erro de declaracao duplicada }
+
+    inteiro a = 5; { a ja foi declarada anteriormente erro de declaracao duplicada }
+
+    escreva a;
+    escreva num;
+
+    { Erro Variavel chute usada antes de ser declarada }
+    se (chute == "H") entao
+        escreva "Acertei!";
+    fimse
+
+    retorna;
+fimfuncao
+

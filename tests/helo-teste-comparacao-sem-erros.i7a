@@ -1,0 +1,13 @@
+ funcao principal
+ args
+    inteiro a, b;
+    real a_real, b_real;
+ fimargs
+ se (a < b) entao
+    escreva "a < b\n";
+ senao se (a_real > b_real) entao
+    escreva "a > b\n";
+ senao
+    escreva "a = b\n";
+ fimse
+ fimfuncao

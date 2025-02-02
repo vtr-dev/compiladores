@@ -1,0 +1,46 @@
+funcao soma tipo inteiro
+args
+ inteiro a, b;
+fimargs
+retorna a + b;
+fimfuncao
+
+funcao concatena tipo caractere
+args
+ caractere a, b;
+fimargs
+retorna a;
+fimfuncao
+
+funcao principal
+inteiro resultado1 = chama @soma 5, 10;
+
+inteiro resultado2 = chama @soma 'a', 10;
+
+inteiro resultado3 = chama @soma 5;
+
+inteiro resultado4 = chama @soma 5, 10, 15;
+
+caractere resultado5 = chama @concatena 'A', 'B';
+
+caractere resultado6 = chama @concatena 10, 'B';
+
+inteiro resultado7 = chama @naoExiste 5, 10;
+
+inteiro x;
+inteiro resultado8 = chama @soma x, 10;
+
+inteiro resultado9 = chama @soma y, 10;
+
+inteiro resultado10 = chama @soma (5 + 3), 2;
+
+chama @soma 1, 2;
+
+inteiro resultado12 = 2 * chama @soma 1, 2;
+
+inteiro resultado13 = chama @soma (3 * 2), (4 + 1);
+
+caractere resultado14 = chama @concatena 'X', 'Y';
+
+caractere resultado15 = chama @soma 1, 2;
+fimfuncao

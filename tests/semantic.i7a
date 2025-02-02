@@ -1,0 +1,78 @@
+funcao soma tipo inteiro
+args
+ inteiro a, b;
+fimargs
+retorna a + b;
+fimfuncao
+
+funcao multiplica tipo inteiro
+args
+ inteiro x, y;
+fimargs
+retorna x * y;
+fimfuncao
+
+funcao retornaCaractere tipo caractere
+retorna 'C';
+fimfuncao
+
+funcao verificaParidade tipo booleano
+args
+ inteiro numero;
+fimargs
+retorna numero % 2 == 0;
+fimfuncao
+
+funcao principal
+inteiro resultado1 = chama @soma 5, 10;
+
+inteiro resultado2 = chama @soma 5, 'a';
+
+inteiro resultado3 = chama @soma 5;
+
+inteiro a = 10;
+inteiro a = 20;
+
+inteiro resultado5 = b + 2; 
+
+caractere c = 100; 
+
+inteiro resultado7 = 10 + 'X';
+
+inteiro resultado8 = chama @retornaCaractere;
+
+{
+ inteiro d = 30;
+}
+escreva d; 
+
+inteiro e;
+inteiro resultado10 = e + 5;
+
+booleano f = (5 == 'Y');
+
+chama @multiplica 3, 4;
+
+inteiro resultado13 = 10 + (verdadeiro && falso);
+
+inteiro resultado14 = chama @retornaCaractere + 5;
+
+inteiro array[10];
+inteiro resultado15 = array['Z'];
+
+para (inteiro g = 0; g < 10; g = g + 1) faca
+ escreva h; 
+fimpara
+
+inteiro i = (10 < 5) + 3;
+
+para (inteiro j = 0; j < 5; j = j + 1) faca
+fimpara
+escreva j;
+
+inteiro resultado19 = chama @soma (3 * 2), (4 + 1);
+
+inteiro k = 5;
+caractere resultado20 = k + 2;
+
+fimfuncao

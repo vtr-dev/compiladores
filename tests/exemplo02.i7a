@@ -1,0 +1,18 @@
+funcao mensagem tipo inteiro
+args
+    inteiro base, b;
+fimargs
+    inteiro a;
+    retorna a;
+fimfuncao
+
+funcao principal
+    inteiro a = 10.0;
+    inteiro b = a;
+    literal c = "P";
+    inteiro d = chama @mensagem a b;
+    a = 10;
+    b = a;
+    c = "P";
+    d = chama @mensagem a b;
+fimfuncao

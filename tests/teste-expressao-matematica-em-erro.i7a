@@ -1,0 +1,25 @@
+funcao principal
+args
+ inteiro a, b;
+fimargs
+
+inteiro c = a * b;
+inteiro d = a + b;
+inteiro e = a - b;
+inteiro f = a / b;
+
+inteiro g = c * d + b / f ;
+
+real x = 1.2 + 4;
+
+real y = (-x) + b;
+
+real z = x + y;
+
+c = -(3+2);
+
+d = 1 + 4 * (26 - 5);
+
+
+
+fimfuncao

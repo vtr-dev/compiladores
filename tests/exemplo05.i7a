@@ -1,0 +1,12 @@
+funcao principal
+args
+ inteiro a, b;
+fimargs
+se (a < b) entao
+ escreva "a < b\n";
+senao se (a > b) entao
+ escreva "a > b\n";
+senao
+ escreva "a = b\n";
+fimse
+fimfuncao

@@ -1,0 +1,30 @@
+funcao verificaParidade tipo booleano
+args
+ inteiro numero;
+fimargs
+retorna numero % 2 == 0;
+fimfuncao
+
+funcao obterTexto tipo caractere
+retorna 'Texto';
+fimfuncao
+
+funcao principal
+booleano ehPar = chama @verificaParidade 4;
+
+inteiro resultado11 = chama @verificaParidade 4;
+
+caractere texto = chama @obterTexto;
+
+inteiro resultado13 = chama @obterTexto;
+
+se (chama @verificaParidade 5) entao
+ escreva "Número par";
+senao
+ escreva "Número ímpar";
+fimse
+
+inteiro resultado15 = 10 + chama @obterTexto;
+fimfuncao
+
+

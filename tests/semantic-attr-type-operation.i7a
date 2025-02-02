@@ -1,0 +1,63 @@
+funcao principal
+inteiro h = (5 > 3);
+
+inteiro i = 2 * 'B';
+
+booleano j = (verdadeiro == 1); 
+
+funcao multiplica tipo inteiro
+args
+ inteiro x, y;
+fimargs
+retorna x * y;
+fimfuncao
+
+inteiro resultado11 = chama @multiplica 5, 'C'; 
+
+funcao retornaCaractere tipo caractere
+retorna 100; 
+fimfuncao
+
+caractere resultado12 = chama @retornaCaractere;
+
+inteiro k = (10 < 5) + 3; 
+
+booleano l = (10 == falso); 
+
+se (3 + 'D') entao 
+ escreva "Erro";
+fimse
+
+inteiro m;
+inteiro resultado16 = m + 5; 
+
+inteiro n = 5;
+caractere o = n + 2; 
+funcao retornaInteiro tipo inteiro
+retorna 42;
+fimfuncao
+
+booleano resultado18 = chama @retornaInteiro;
+
+inteiro p = 'E' - 5; 
+
+inteiro q = (5 != 4);
+
+inteiro r = 10 + (verdadeiro && falso); 
+
+inteiro s = 100;
+caractere t = 'F';
+booleano resultado22 = (s == t); 
+
+inteiro array[10];
+inteiro u = array['G']; 
+
+funcao retornaBooleano tipo booleano
+retorna 10 + 2; 
+fimfuncao
+
+booleano resultado24 = chama @retornaBooleano;
+
+inteiro v = chama @retornaCaractere + 5; 
+
+fimfuncao

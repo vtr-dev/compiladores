@@ -1,0 +1,18 @@
+funcao area tipo inteiro
+args
+ inteiro base, altura;
+fimargs
+inteiro a = base * altura;
+retorna a;
+fimfuncao
+funcao principal
+args
+ inteiro base, altura;
+fimargs
+inteiro a = chama @area base altura;
+inteiro a = chama @area base;
+inteiro a = chama @area;
+chama @area base altura;
+chama @area base;
+chama @area;
+fimfuncao

@@ -1,0 +1,21 @@
+funcao principal
+args
+ caractere letra;
+ inteiro cont;
+fimargs
+literal chute;
+chute = "k";
+se(letra == chute) entao
+ escreva "Acertei!";
+senao
+ escreva "senao corpo!";
+fimse
+se (cont < 0) entao
+ escreva "cont < 0";
+fimse
+enquanto (cont > 0) faca
+ escreva letra;
+ escreva "\n";
+ cont = cont - 1;
+fimenquanto
+fimfuncao

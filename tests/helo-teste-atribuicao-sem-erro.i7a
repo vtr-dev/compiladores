@@ -1,0 +1,33 @@
+ funcao testefuncao tipo inteiro
+ args
+    inteiro base;
+    real altura;
+ fimargs
+ inteiro a =  base;
+ altura = 10;
+ retorna chama @testefuncao a a;
+ fimfuncao
+
+ funcao principal
+
+ inteiro a, b;
+ real c, d;
+ literal e, f;
+ caractere g, h;
+
+ inteiro ab = a + b;
+ real cd = 1.5;
+ literal ef = "t";
+ caractere gh="g";
+
+ c = cd;
+ a=ab;
+ g=gh;
+ f=ef;
+
+ inteiro x = chama @testefuncao a  b;
+ 
+ inteiro y = 1 * 5;
+ real w= 1.2+3;
+ 
+ fimfuncao
